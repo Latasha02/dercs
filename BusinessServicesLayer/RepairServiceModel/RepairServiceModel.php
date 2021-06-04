@@ -40,8 +40,8 @@ class RepairServiceModel{
 
     function updateStatus()
     {
-        $sql = "update request set Request_Status=:Request_Status, StaffID=:StaffID, Reason=:Reason where RequestID=:RequestID";
-        $args = [':RequestID'=>$this->RequestID,':Request_Status'=>$this->Request_Status,':StaffID'=>$this->StaffID,':Reason'=>$this->Reason];
+        $sql = "update request set Request_Status=:Request_Status, StaffID=:StaffID, Reason=:Reason, Delivery_Status=:Delivery_Status where RequestID=:RequestID";
+        $args = [':RequestID'=>$this->RequestID,':Request_Status'=>$this->Request_Status,':StaffID'=>$this->StaffID,':Reason'=>$this->Reason,':Delivery_Status'=>$this->Delivery_Status];
         $stmt = RepairServiceModel::connect()->prepare($sql);
         $stmt->execute($args);
         return $stmt;

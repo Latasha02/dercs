@@ -14,7 +14,7 @@ class RepairServiceController{
         if($data->deleteRequest()){
             $message = "Success Delete!";
         echo "<script type='text/javascript'>alert('$message');
-        window.location = 'http://localhost/DERCS/ApplicationLayer/ManageRepairService/RequestList.php';</script>";
+        window.location = '../../ApplicationLayer/RepairServiceModule/RequestList.php';</script>";
         }
     }
 
@@ -34,12 +34,12 @@ class RepairServiceController{
         $request = new RepairServiceModel();
         $request->RequestID = $_POST['RequestID'];
         $request->Request_Status = $_POST['Request_Status'];
-        $request->Request_Status = $_POST['Request_Status'];
+        $request->Delivery_Status = $_POST['Delivery_Status'];
         $request->Reason = $_POST['Reason'];
         $request->StaffID = $_POST['StaffID'];
         if($request->updateStatus()){
         echo "<script type='text/javascript'>;
-        window.location = 'http://localhost/DERCS/ApplicationLayer/ManageRepairService/RequestList.php';</script>";
+        window.location = '../../ApplicationLayer/RepairServiceModule/RequestList.php';</script>";
         }
     }
 
@@ -55,7 +55,7 @@ class RepairServiceController{
            $message = "Success Updated!";
         echo "<script type='text/javascript'>alert('$message');
        
-        window.location = 'http://localhost/DERCS/ApplicationLayer/ManageRepairService/RequestList.php';</script>";
+        window.location = '../../ApplicationLayer/RepairServiceModule/RequestList.php';</script>";
         }
     }
 
