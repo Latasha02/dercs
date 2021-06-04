@@ -1,19 +1,9 @@
 <?php
- require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RepairServiceController/RepairServiceController.php';
+require_once '/xampp/htdocs/dercs/BusinessServicesLayer/DeliveryController/DeliveryController.php';
 
+$delivery = new DeliveryController();
+$data = $delivery->viewalldelivery();
 
-$RequestID = $_GET['RequestID'];
-$CustomerID = $_GET['custID'];
-
-$request = new RepairServiceController();
-$data = $request->viewRequest($RequestID);
-$data2 = $request->getName($CustomerID);
-
-if(isset($_POST['done'])){
-     
-    $request->updateRequest();
-}
- 
 
 ?>
 <!DOCTYPE html>
@@ -36,6 +26,15 @@ if(isset($_POST['done'])){
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+ .footer {
+   
+   left: 0;
+   bottom: 0;
+   width: 100%;
+
+   color: black;
+   text-align: center;
+}
 .p {
             color: dodgerblue;
             font-size:20px;}
@@ -69,15 +68,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   bottom: 0;
   height: inherit;
 }
-.footer {
-   
-   left: 0;
-   bottom: 0;
-   width: 100%;
-
-   color: black;
-   text-align: center;
-}
 </style>
 <body>
 
@@ -85,7 +75,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <div class="w3-top">
   <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-theme-l1"><img src="../../images/logo.jpg" width="25" height="25"> DERCS Computer Repair Shop</a>
+    
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1"><img src="logo.jpg" width="25" height="25"> DERCS Computer Repair Shop</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" ></a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1">Home</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1">About Us</a>
@@ -93,7 +84,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" align="left">Sign In</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" align="left">Sign Up</a>
-    
    
     
   </div>
@@ -108,113 +98,64 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   <a class="w3-bar-item w3-button w3-hover-black" href="#">Customer Request</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">Tracking</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">My Profile</a>
+  
 </nav>
 
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
-<div class="w3-main" style="margin-left:250px"; width="100%">
+<div class="w3-main" style="margin-left:250px">
 
   <div class="w3-row w3-padding-64">
-    <div class="w3-full w3-container">
+    <div class="w3-twothird w3-container">
 
 <!--Start write the code here-->
-        <table align="center" width="60%">
-          <?php
-            foreach($data2 as $row){
-          ?>
-          <tr>
-            <td align="center" colspan="1"><h2>Customer Information</h2></td>
-          </tr>
-          <tr>
-            <td>Name: </td>
-            <td align="left"><?=$row['Cust_Name']?></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Phone Number: </td>
-            <td><?=$row['Cust_Phone']?></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Address: </td>
-            <td><?=$row['Cust_Address']?></td>
-            <td></td>
-          </tr>
-          <?php } ?>
-        </table>
-        <table align="center" width="60%" >
-          <form method="POST" action="">
-    
+
+<table class="table table-striped table-bordered table-hover" id="deliverytable">
+      <thead>
+      <tr>
+        <th>Delivery ID</th>
+        <th>Customer ID</th>
+        <th>Rider ID</th>
+        <th>Request ID</th>
+        <th>Delivery Status</th>
+        <th>Delivery Date</th>
+        <th>Delivery Time</th>
+        <th>Delivery Remarks</th>
+      </tr>
+      </thead>
+      <tbody>
           <?php
             foreach($data as $row){
+              echo "<tr>";
           ?>
-          <tr><td colspan="4"><hr style="height:2px;border-width:0;color:gray;background-color:gray"></td></tr>
-         <tr>
-            <td align="center" colspan="1"><h2>Request Details</h2></td>
-          </tr>
+          <?=$row['DeliveryID']?>
+          <form action="" method="POST">
           <tr>
-           <td  >Request ID: </td>
-            <td><?=$row['RequestID']?></td>
-            <td >Reason : </td>
-            <td><input type="text" name="Reason" placeholder="Enter reason here" size="20" required></td>
-          </tr>
-
-
-          <tr>
-           <td ><br>Customer ID: </td>
-           <td><br><?=$row['CustomerID']?></td>
-          </tr>
-
-          <tr>
-           <td ><br>Request Time: </td>
-           <td><br><?=$row['Request_Time']?></td>
-           <td ><br>Estimate cost RM: </td>
-           <td><br><input type="text" name="Estimate_Cost" placeholder="Estimate cost" required></td>
-          </tr>
-
-          <tr>
-           <td ><br>Defect Type: </td>
-           <td><br><?=$row['Defect_Type']?></td>
-          </tr>
-
-              
-          <tr>
-           <td ><br>Status: </td>
-                <td><br><input type="radio" name="Request_Status" value="On Progress" <?=$row['Request_Status']=="On Progress" ? "checked" : ""?> required checked>&nbsp;On Progress
-                    <br>
-                    <input type="radio" name="Request_Status" value="Pending" <?=$row['Request_Status']=="Pending" ? "checked" : ""?> required>&nbsp;Pending<br>
-                    <input type="radio" name="Request_Status" value="Cannot Be Repaired" <?=$row['Request_Status']=="Cannot Be Repaired" ? "checked" : ""?> required>&nbsp;Cannot Be Repaired
-                  </td>
-
-                  
-            </tr></td>
-          </tr>
-
-
-
-          <tr>        
-            <td align="center"><button type="button" onclick="window.location.href='RequestList.php'">CANCEL</button></td>
-            <td align="center"><input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
-            <input type="submit" name="done" value="DONE" ></td>
-            
-          </tr>
-             
-             </form>
-            <?php } ?>
-
+            <td>hi</td>
+            <td><?=$row['DeliveryID']?></td>
+            <td><?=$row['DeliveryID']?></td>
+            <td><?=$row['DeliveryID']?></td>
+            <td><?=$row['DeliveryID']?></td>
+            <td><?=$row['DeliveryID']?></td>
+            <td><?=$row['DeliveryID']?></td>
+            <td><?=$row['DeliveryID']?></td>
+          </form>
+                <?php
+                  echo "</tr>";
+                  }
+                ?>
+        </tbody>
         </table>
-
-
-
 
 
 <!-- end -->
-      
-</div >
-<div class="footer">
+
+        <div class="footer">
       <p align="center">DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
+
+      
     </div>
     
   </div>
