@@ -142,7 +142,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                     <input type="submit"  name="delete" value="DELETE" style="font-weight: bold;background-color: #ff1a1a">
                     &nbsp;&nbsp;&nbsp;
                     
-                   #80bfff
+                   
                     
                 </form></td>
                 <?php
