@@ -190,15 +190,15 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
           </tr>
 
           <tr>
-            <td ><br>Estimate cost RM: </td>
-           <td><br><?=$row['Estimate_Cost']?></td>
+            <td ><br>Estimate cost : </td>
+           <td><br>RM<?=$row['Estimate_Cost']?></td>
           </tr>
              
 
           <tr>        
            
             <td align="center" rowspan="3"><br><br><button type="button" onclick="window.location.href='../../ApplicationLayer/Homepage/staffHomepage.php'">CLOSE</button>
-              <button type="button" onclick="window.location.href='editRequest.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'">EDIT</button>
+              <button type="button" onclick="window.location.href='editRequest.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" style="font-weight: bold;background-color: #80bfff">EDIT</button>
 </td>
             
             
