@@ -182,10 +182,11 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
               
           <tr>
            <td ><br>Status: </td>
-                <td><br><input type="radio" name="Request_Status" value="On Progress" <?=$row['Request_Status']=="On Progress" ? "checked" : ""?> required checked>&nbsp;On Progress
+                <td><br><input type="radio" name="Request_Status" value="In Progress" <?=$row['Request_Status']=="In Progress" ? "checked" : ""?> required checked>&nbsp;In Progress
                     <br>
                     <input type="radio" name="Request_Status" value="Pending" <?=$row['Request_Status']=="Pending" ? "checked" : ""?> required>&nbsp;Pending<br>
-                    <input type="radio" name="Request_Status" value="Cannot Be Repaired" <?=$row['Request_Status']=="Cannot Be Repaired" ? "checked" : ""?> required>&nbsp;Cannot Be Repaired
+                    <input type="radio" name="Request_Status" value="Cannot Be Repaired" <?=$row['Request_Status']=="Cannot Be Repaired" ? "checked" : ""?> required>&nbsp;Cannot Be Repaired<br>
+                    <input type="radio" name="Request_Status" value="Done" <?=$row['Request_Status']=="Done" ? "checked" : ""?> required>&nbsp;Done
                   </td>
 
                   

@@ -56,6 +56,28 @@ class RepairServiceModel{
         return $stmt;
     }
     
+    function viewToApproveTask(){
+        $sql = "select * from request where Request_Status like '%Apply%'";
+        return RepairServiceModel::connect()->query($sql);;
+    }
+
+    function viewInProgressTask(){
+        $sql = "select * from request where Request_Status like '%In Progress%' OR Request_Status like '%Approved%'";
+        return RepairServiceModel::connect()->query($sql);;
+    }
+
+    function viewPendingTask(){
+        $sql = "select * from request where Request_Status like '%Pending%'";
+        return RepairServiceModel::connect()->query($sql);;
+    }
+    function viewCannotRepairTask(){
+        $sql = "select * from request where Request_Status like '%Cannot Be Repaired%'";
+        return RepairServiceModel::connect()->query($sql);;
+    }
+    function viewDoneTask(){
+        $sql = "select * from request where Request_Status like '%Done%'";
+        return RepairServiceModel::connect()->query($sql);;
+    }
 
  
 }

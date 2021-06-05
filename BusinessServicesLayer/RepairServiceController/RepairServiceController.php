@@ -59,6 +59,33 @@ class RepairServiceController{
         }
     }
 
+    function getToApproveTask(){
+        $item = new RepairServiceModel();
+        return $item->viewToApproveTask();
+    }
+
+    function getInProgressTask(){
+        $item = new RepairServiceModel();
+        return $item->viewInProgressTask();
+    }
+
+    function getPendingTask(){
+        $item = new RepairServiceModel();
+        return $item->viewPendingTask();
+    }
+
+    function getCannotRepairTask(){
+        $item = new RepairServiceModel();
+        return $item->viewCannotRepairTask();
+    }
+
+    function getDoneTask(){
+        $item = new RepairServiceModel();
+        return $item->viewDoneTask();
+    }
+
+
+
 
     
     

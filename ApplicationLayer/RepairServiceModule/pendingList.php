@@ -2,11 +2,13 @@
  require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RepairServiceController/RepairServiceController.php';
 
 $repairService = new RepairServiceController();
-$data = $repairService->view();
+$data = $repairService->getPendingTask();
 
-if(isset($_POST['approve'])){
-    $data=$repairService->getToApproveTask();
+if(isset($_POST['delete'])){
+    $repairService->delete();
 }
+
+
 
 ?>
 <!DOCTYPE html>
@@ -29,15 +31,6 @@ if(isset($_POST['approve'])){
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
- .footer {
-   
-   left: 0;
-   bottom: 0;
-   width: 100%;
-
-   color: black;
-   text-align: center;
-}
 .p {
             color: dodgerblue;
             font-size:20px;}
@@ -71,6 +64,15 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   bottom: 0;
   height: inherit;
 }
+.footer {
+  
+   left: 0;
+   bottom: 0;
+   width: 100%;
+
+   color: black;
+   text-align: center;
+}
 </style>
 <body>
 
@@ -78,8 +80,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <div class="w3-top">
   <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-    
-    <a href="#" class="w3-bar-item w3-button w3-theme-l1"><img src="../../Images/logo.jpg" width="25" height="25"> DERCS Computer Repair Shop</a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1"><img src="../../images/logo.jpg" width="25" height="25"> DERCS Computer Repair Shop</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" ></a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1">Home</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1">About Us</a>
@@ -87,6 +88,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" align="left">Sign In</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" align="left">Sign Up</a>
+    
    
     
   </div>
@@ -98,52 +100,62 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <i class="fa fa-remove"></i>
   </a>
   <h4 class="w3-bar-item"><b>Menu</b></h4>
-  <a class="w3-bar-item w3-button w3-hover-black" href="../../ApplicationLayer/RepairServiceModule/RequestList.php">All Customer Request</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#">Customer Request</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">Tracking</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">My Profile</a>
-  
 </nav>
 
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
-<div class="w3-main" style="margin-left:250px">
+<div class="w3-main" style="margin-left:250px"; width="100%">
 
   <div class="w3-row w3-padding-64">
     <div class="w3-full w3-container">
+        <h2 align="center">Customer List</h2>
+        <table id="sData" width="100%" width="100%" class="table table-stripped table-bordered" align="center">
+            <thead>
+                <th align="center">No</th>
+                <th align="center">Request ID</th>
+                <th align="center">Status</th>
+                <th align="center">Defect</th>
+                <th align="center">Action</th>
+            </thead>    
+            <?php
+            $i = 1;
+            foreach($data as $row){
+                echo "<tr>" 
+                . "<td>".$i."</td>"
+                . "<td>".$row['RequestID']."</td&nbsp;>"
+                ."<td>".$row['Request_Status']."</td&nbsp;>"
+                  . "<td>".$row['Defect_Type']."</td&nbsp;>";
 
 
-<!--Start write the code here-->  
-    
+            
+            ?>
+            <td align="center"><form action="" method="POST">
+                    <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
+                    <input type="hidden" name="custID" value="<?=$row['CustomerID']?>">
+                    <input type="button"  onclick="location.href='staffVieweditedInfo.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="VIEW" name="view">
+                    <input type="button"  onclick="location.href='editRequest.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="EDIT" name="edit">
+                    <input type="submit"  name="delete" value="DELETE">
+                    &nbsp;&nbsp;&nbsp;
+                    
+                   
+                    
+                </form></td>
+                <?php
+                $i++;
+                echo "</tr>";
+        }
+        ?>
+  
+        </table>
 
-      <table id="detail" width="60%" height="70%" align="center" >
-        <form method="POST" action="">
-    <tr> <hr>
-      <td align="center"> <button name="approve" type="button" style="width: 150px;height: 150px" onclick="window.location.href='../../ApplicationLayer/RepairServiceModule/toApproveList.php'"><b> To Approve<b> <br> <br> <img src="../../Images/to_approve.jpg" style="width:100px;height:100px;border:0"/>  </button> </td> 
-      <td align="center"> <button name="progress" type="button" style="width: 150px;height: 150px" onclick="window.location.href='../../ApplicationLayer/RepairServiceModule/inProgressList.php'"><b> Approve & In Progress<b>  <img src="../../Images/in_progress.png" style="width:90px;height:90px;border:0"/>  </button> </td> 
-    </tr>
-    
-    <tr>
-      <td align="center"> <br><br><button name="pending" type="button" style="width: 150px;height: 150px" onclick="window.location.href='../../ApplicationLayer/RepairServiceModule/pendingList.php'"><b> Pending<b><br> <br> <img src="../../Images/pending.png" style="width:100px;height:100px;border:0"/>  </button> </td> 
-      <td align="center"><br><br> <button name="reject" type="button" style="width: 150px;height: 150px" onclick="window.location.href='../../ApplicationLayer/RepairServiceModule/cannotRepairList.php'"> <b>Cannot Be Repair<b> <br> <br> <img src="../../Images/reject.png" style="width:100px;height:100px;border:0"/>  </button> </td> 
-    </tr>
-    <tr>
-      <td align="center" colspan="2"><br><br> <button name="done" type="button" style="width: 150px;height: 150px" onclick="window.location.href='../../ApplicationLayer/RepairServiceModule/doneList.php'"><b> Done<b> <br> <br> <img src="../../Images/done.png" style="width:100px;height:100px;border:0"/>  </button> </td> 
-    </tr>
-  </form>
-  </table>
-
-
-
-
-
-<!-- end -->
-
-        <div class="footer">
-      <p align="center"><br><br>DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
-
-      
+      <div class="footer">
+      <p align="center">DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
+</div >
     </div>
     
   </div>
@@ -179,3 +191,11 @@ function w3_close() {
 
 </body>
 </html>
+<script>  
+ $(document).ready(function(){  
+      $('#sData').DataTable({
+      "lengthMenu": [[5, 10, 20, -1], [5, 10, 15, "All"]]
+
+      });
+ });
+ </script>  
