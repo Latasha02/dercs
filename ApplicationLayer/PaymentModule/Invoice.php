@@ -1,0 +1,269 @@
+<?php
+
+ require_once '../../BusinessServicesLayer/PaymentController/PaymentController.php';
+
+$invoiceAtas = new PaymentController();
+$data1 = $invoiceAtas->viewInvoice1();
+
+$invoiceBwh = new PaymentController();
+$data2 = $invoiceBwh->viewInvoice2();
+
+  
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+
+		<link rel='stylesheet' type='text/css' href='css/style.css' />
+		<link rel='stylesheet' type='text/css' href='css/print.css' media="print" />
+		<script type='text/javascript' src='js/jquery-1.3.2.min.js'></script>
+		<script type='text/javascript' src='js/example.js'></script>
+
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
+           <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
+           <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />  
+    </head>
+<title>DERCS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+ .footer {
+   
+   left: 0;
+   bottom: 0;
+   width: 100%;
+
+   color: black;
+   text-align: center;
+}
+.p {
+            color: dodgerblue;
+            font-size:20px;}
+
+            .back {
+            position: absolute;
+            right :550;
+            top:120;
+            font-size:20px;
+        }
+
+        sc{
+          position:absolute;
+          right:20;
+        }
+        
+        
+            .box{
+                border: 1px solid black;
+            }
+            button.a{
+              background-color: white;
+              border-color: red;
+            }
+
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+.w3-sidebar {
+  z-index: 3;
+  width: 250px;
+  top: 43px;
+  bottom: 0;
+  height: inherit;
+}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1"><img src="../../images/logo.jpg" width="25" height="25"> DERCS Computer Repair Shop</a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1" ></a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1">Home</a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1">About Us</a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1" >Our Service</a>
+
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1" align="left">Sign In</a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1" align="left">Sign Up</a>
+   
+    
+  </div>
+</div>
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+    <i class="fa fa-remove"></i>
+  </a>
+  <h4 class="w3-bar-item"><b>Menu</b></h4>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#">Customer Request</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#">Tracking</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#">My Profile</a>
+   <a class="w3-bar-item w3-button w3-hover-black" href="Invoice.php">Invoice</a>
+  
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div class="w3-main" style="margin-left:250px">
+
+  <div class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+
+<!--Start write the code here-->
+<div id="page-wrap">
+
+		<textarea style="width: 800px;
+  height: 50px;" id="header">INVOICE</textarea>
+		
+		<div id="identity">
+		
+       <textarea id="address">DERCS
+		Universiti Malaysia 
+		Pahang, 26600 Pekan, 
+		Pahang
+
+		Phone: (555) 555-5555</textarea>
+
+
+		
+		</div>
+		
+		<div style="clear:both"></div>
+		
+		<div id="customer">
+
+            <textarea id="customer-title">Computer Repair Shop</textarea>
+
+            <table id="meta">
+            	<?php
+            	foreach($data1 as $row1){
+            	?> 
+                <tr>
+                    <td class="meta-head">Invoice #</td>
+                    <td><textarea></textarea></td>
+                </tr>
+                <tr>
+
+                    <td class="meta-head">Request Time & Date</td>
+                    <td><textarea id="date"><?=$row1['Request_Time']?></textarea></td>
+                </tr>
+                <tr>
+                    <td class="meta-head">Cost(RM)</td>
+                    <td><div class="due"><?=$row1['Estimate_Cost']?>.00</div></td>
+                </tr>
+                <?php } ?>
+            </table>
+		
+		</div>
+		<table id="items">
+		
+		  <tr>
+		      <th>Device Type</th>
+		      <th>Device Model</th>
+		      <th>Defect Type</th>
+		      <th>Reason</th>
+		      <th>Price</th>
+		  </tr>
+		  
+		 <?php
+            	foreach($data2 as $row2){
+            	$totalprice =0;
+                $deliveryfee=5;
+            	$totalprice = $deliveryfee + $row2["Estimate_Cost"];
+            	?> 
+		  
+		  <tr class="item-row">
+		      <td class="item-name"><textarea><?=$row2['Device_Type']?></textarea></td>
+
+		      <td class="description"><textarea><?=$row2['Device_Model']?></textarea></td>
+		       <td class="description"><textarea><?=$row2['Defect_Type']?></textarea></td>
+		      <td><textarea class="cost"><?=$row2['Reason']?></textarea></td>
+		      
+		      <td><span class="price"><?=$row2['Estimate_Cost']?></span></td>
+		  </tr>
+		  
+		  
+		  
+		  <tr>
+		      <td colspan="2" class="blank"> </td>
+		      <td colspan="2" class="total-line">Fee Pick Up</td>
+		      <td class="total-value"><div id="subtotal">5.00</div></td>
+		  </tr>
+		  <tr>
+
+		      <td colspan="2" class="blank"> </td>
+		      <td colspan="2" class="total-line">Total</td>
+		      <td> <input type="text" name="subtotal" value="<?=number_format($totalprice,2); ?>" id="subtotal" style="width: 5em;"  class="noborder" readonly></td>
+
+		      
+		  </tr>
+		  
+		 <?php } ?>
+		</table>
+		
+		<div id="terms">
+		  <h5>Terms</h5>
+		  <textarea>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
+		</div>
+	
+	</div>
+
+
+
+
+<!-- end -->
+
+         <div class="footer">
+      <p>DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
+
+
+      
+    </div>
+    
+  </div>
+
+
+<!-- END MAIN -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>
+
+</body>
+</html>
