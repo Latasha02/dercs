@@ -137,12 +137,15 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
             
             ?>
             <td><form method="POST"> 
+              
+              
                     <input type="hidden" name="CustomerID" value="<?=$row['CustomerID']?>">
-                    <input type="hidden" name="RiderID" value="1">
+                    <input type="hidden" name="RiderID" value=1>
                     <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
+                    <input type="hidden" name="Request_Status" value="Processing">
                     <input type="hidden" name="Delivery_Type" value="Pick Up">
                     <input type="hidden" name="Delivery_Status" value="Ready to pick up">
-                    <input type="hidden" name="Delivery_Time" value="CurrentTime">
+                    <input type="hidden" name="Delivery_Time" value="<?php echo date('Y-m-d H:i:s'); ?>">
                     <input type="submit" name="accept" value="Accept" class="btn btn-outline-primary h5 btn-lg" />
                 </form></td>
                 <?php

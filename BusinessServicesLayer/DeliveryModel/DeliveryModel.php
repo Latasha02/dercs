@@ -16,10 +16,11 @@ class DeliveryModel{
 
     function adddelivery()
     {
-        $sql = "insert into delivery(CustomerID, RiderID, RequestID, Delivery_Type, Delivery_Status, Delivery_Time) values (:CustomerID, :RiderID, :RequestID, :Delivery_Type, :Delivery_Status, :Delivery_Time)";
-        $args = [':CustomerID'=>$this->CustomerID, 'RiderID'=>$this->RiderID, 'RequestID'=>$this->RequestID, 'Delivery_Type'=>$this->Delivery_Type, 'Delivery_Status'=>$this->Delivery_Status, 'Delivery_Time'=>$this->Delivery_Time];
-        return DeliveryModel::connect()->query($sql, $args);
-
+        $sql = "insert into delivery(CustomerID, RiderID, RequestID,Request_Status,  Delivery_Type, Delivery_Status, Delivery_Time) values (:CustomerID, :RiderID, :RequestID, :Delivery_Type, :Delivery_Status, :Delivery_Time)";
+        $args = [':CustomerID'=>$this->CustomerID, 'RiderID'=>$this->RiderID, 'RequestID'=>$this->RequestID, 'Request_Status'=>$this->Request_Status,'Delivery_Type'=>$this->Delivery_Type, 'Delivery_Status'=>$this->Delivery_Status, 'Delivery_Time'=>$this->Delivery_Time];
+        $stmt = DeliveryModel::connect()->prepare($sql);
+        $stmt->execute($args);
+        return $stmt;   
     }
 
 } 
