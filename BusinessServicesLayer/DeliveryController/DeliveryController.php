@@ -11,7 +11,6 @@ class DeliveryController{
     function adddelivery()
     {
         $delivery = new DeliveryModel();
-        $delivery->DeliveryID = null;
         $delivery->CustomerID = $_POST['CustomerID'];
         $delivery->RiderID = $_POST['RiderID'];
         $delivery->RequestID = $_POST['RequestID'];

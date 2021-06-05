@@ -10,7 +10,7 @@ class DeliveryModel{
     }
 
     function view(){
-        $sql = "select * FROM request INNER JOIN customers ON request.CustomerID = customers.CustomerID WHERE request.Request_Status LIKE 'a%' ";
+        $sql = "select * FROM request INNER JOIN customers ON request.CustomerID = customers.CustomerID WHERE request.Request_Status LIKE '%approved%' ";
         return DeliveryModel::connect()->query($sql);
     }
 
