@@ -10,7 +10,7 @@ class DeliveryModel{
     }
 
     function view(){
-        $sql = "select * from request ";
+        $sql = "select * from request WHERE Request_Status LIKE 'a%' ";
         return DeliveryModel::connect()->query($sql);;
     }
 

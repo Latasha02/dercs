@@ -109,8 +109,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
   <div class="w3-row w3-padding-64">
     <div class="w3-full w3-container">
-        <h2 align="center">Customer List</h2>
+        
         <table id="sData" width="100%" width="100%" class="table table-stripped table-bordered" align="center">
+          <h1> Pick Up List</h1>
             <thead>
                 <th>No</th>
                 <th>Request ID</th>
