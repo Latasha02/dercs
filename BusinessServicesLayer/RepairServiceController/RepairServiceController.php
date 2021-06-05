@@ -47,6 +47,14 @@ class RepairServiceController{
         $request = new RepairServiceModel();
         $request->RequestID = $_POST['RequestID'];
         $request->Request_Status = $_POST['Request_Status'];
+        $status="Done";
+        $status2="Cannot Be Repaired";
+        if ($_POST['Request_Status']==$status || $_POST['Request_Status'] == $status2) {
+            $request->Delivery_Status = "Ready for delivery";
+        }
+        else
+            $request->Delivery_Status = "Accepted";
+        //$request->Delivery_Status = $Delivery_Status;
         $request->Reason = $_POST['Reason'];
         $request->Estimate_Cost = $_POST['Estimate_Cost'];
        
@@ -58,6 +66,33 @@ class RepairServiceController{
         window.location = '../../ApplicationLayer/RepairServiceModule/RequestList.php';</script>";
         }
     }
+
+    function getToApproveTask(){
+        $item = new RepairServiceModel();
+        return $item->viewToApproveTask();
+    }
+
+    function getInProgressTask(){
+        $item = new RepairServiceModel();
+        return $item->viewInProgressTask();
+    }
+
+    function getPendingTask(){
+        $item = new RepairServiceModel();
+        return $item->viewPendingTask();
+    }
+
+    function getCannotRepairTask(){
+        $item = new RepairServiceModel();
+        return $item->viewCannotRepairTask();
+    }
+
+    function getDoneTask(){
+        $item = new RepairServiceModel();
+        return $item->viewDoneTask();
+    }
+
+
 
 
     

@@ -90,9 +90,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1"><img src="../../images/logo.jpg" width="25" height="25"> DERCS Computer Repair Shop</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" ></a>
-    <a href="#" class="w3-bar-item w3-button w3-theme-l1">Home</a>
-    <a href="#" class="w3-bar-item w3-button w3-theme-l1">About Us</a>
-    <a href="#" class="w3-bar-item w3-button w3-theme-l1" >Our Service</a>
+    <a href="../../ApplicationLayer/Homepage/staffHomepage.php" class="w3-bar-item w3-button w3-theme-l1">Home</a>
+    <a href="../../ApplicationLayer/Homepage/aboutUs.php" class="w3-bar-item w3-button w3-theme-l1">About Us</a>
+    <a href="../../ApplicationLayer/Homepage/ourService.php" class="w3-bar-item w3-button w3-theme-l1" >Our Service</a>
 
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" align="left">Sign In</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" align="left">Sign Up</a>
@@ -108,7 +108,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <i class="fa fa-remove"></i>
   </a>
   <h4 class="w3-bar-item"><b>Menu</b></h4>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#">Customer Request</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="../../ApplicationLayer/RepairServiceModule/RequestList.php">All Customer Request</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">Tracking</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">My Profile</a>
 </nav>
@@ -199,8 +199,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
             <td align="center"><button type="button" onclick="window.location.href='RequestList.php'">BACK</button></td>
             <td align="center"><input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
               <input type="hidden" name="Request_Status" value="Approved">
+              <input type="hidden" name="Reason" value="Waiting for device.">
               <input type="hidden" name="Delivery_Status" value="Accepted">
-              <input type="hidden" name="Reason" value="Your Request is Approved.">
+              
             <input type="submit" name="approve" value="APPROVE" ></td>
             
           </tr>

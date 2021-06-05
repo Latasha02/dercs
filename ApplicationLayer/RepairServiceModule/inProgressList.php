@@ -2,7 +2,7 @@
  require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RepairServiceController/RepairServiceController.php';
 
 $repairService = new RepairServiceController();
-$data = $repairService->view();
+$data = $repairService->getInProgressTask();
 
 if(isset($_POST['delete'])){
     $repairService->delete();
@@ -100,7 +100,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <i class="fa fa-remove"></i>
   </a>
   <h4 class="w3-bar-item"><b>Menu</b></h4>
-  <a class="w3-bar-item w3-button w3-hover-black" href="../../ApplicationLayer/RepairServiceModule/RequestList.php">All Customer Request</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="../../ApplicationLayer/RepairServiceModule/RequestList.php">All Customer Request</a>  
   <a class="w3-bar-item w3-button w3-hover-black" href="#">Tracking</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">My Profile</a>
 </nav>
@@ -116,11 +116,11 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
         <h2 align="center">Customer List</h2>
         <table id="sData" width="100%" width="100%" class="table table-stripped table-bordered" align="center">
             <thead>
-                <th>No</th>
-                <th>Request ID</th>
-                <th>Status</th>
-                <th>Defect</th>
-                <th>Action</th>
+                <th align="center">No</th>
+                <th align="center">Request ID</th>
+                <th align="center">Status</th>
+                <th align="center">Defect</th>
+                <th align="center">Action</th>
             </thead>    
             <?php
             $i = 1;
@@ -134,13 +134,14 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
             
             ?>
-            <td><form action="" method="POST">
+            <td align="center"><form action="" method="POST">
                     <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
                     <input type="hidden" name="custID" value="<?=$row['CustomerID']?>">
-                    <input type="button"  onclick="location.href='viewDetail.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="VIEW" name="view">
+                    <input type="button"  onclick="location.href='staffVieweditedInfo.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="VIEW" name="view">
                     <input type="button"  onclick="location.href='editRequest.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="EDIT" name="edit">
                     <input type="submit"  name="delete" value="DELETE">
                     &nbsp;&nbsp;&nbsp;
+                    
                    
                     
                 </form></td>

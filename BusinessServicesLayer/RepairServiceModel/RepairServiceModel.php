@@ -49,13 +49,35 @@ class RepairServiceModel{
 
     function updateRequestStatus()
     {
-        $sql = "update request set Request_Status=:Request_Status, Estimate_Cost=:Estimate_Cost, Reason=:Reason where RequestID=:RequestID";
-        $args = [':RequestID'=>$this->RequestID,':Request_Status'=>$this->Request_Status,':Estimate_Cost'=>$this->Estimate_Cost,':Reason'=>$this->Reason];
+        $sql = "update request set Request_Status=:Request_Status, Estimate_Cost=:Estimate_Cost, Reason=:Reason, Delivery_Status=:Delivery_Status where RequestID=:RequestID";
+        $args = [':RequestID'=>$this->RequestID,':Request_Status'=>$this->Request_Status,':Estimate_Cost'=>$this->Estimate_Cost,':Reason'=>$this->Reason,':Delivery_Status'=>$this->Delivery_Status];
         $stmt = RepairServiceModel::connect()->prepare($sql);
         $stmt->execute($args);
         return $stmt;
     }
     
+    function viewToApproveTask(){
+        $sql = "select * from request where Request_Status like '%Apply%'";
+        return RepairServiceModel::connect()->query($sql);;
+    }
+
+    function viewInProgressTask(){
+        $sql = "select * from request where Request_Status like '%In Progress%' OR Request_Status like '%Approved%'";
+        return RepairServiceModel::connect()->query($sql);;
+    }
+
+    function viewPendingTask(){
+        $sql = "select * from request where Request_Status like '%Pending%'";
+        return RepairServiceModel::connect()->query($sql);;
+    }
+    function viewCannotRepairTask(){
+        $sql = "select * from request where Request_Status like '%Cannot Be Repaired%'";
+        return RepairServiceModel::connect()->query($sql);;
+    }
+    function viewDoneTask(){
+        $sql = "select * from request where Request_Status like '%Done%'";
+        return RepairServiceModel::connect()->query($sql);;
+    }
 
  
 }

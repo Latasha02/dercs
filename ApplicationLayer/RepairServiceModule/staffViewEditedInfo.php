@@ -1,14 +1,19 @@
 <?php
  require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RepairServiceController/RepairServiceController.php';
 
-$repairService = new RepairServiceController();
-$data = $repairService->view();
 
-if(isset($_POST['delete'])){
-    $repairService->delete();
+$RequestID = $_GET['RequestID'];
+$CustomerID = $_GET['custID'];
+
+$request = new RepairServiceController();
+$data = $request->viewRequest($RequestID);
+$data2 = $request->getName($CustomerID);
+
+if(isset($_POST['done'])){
+     
+    $request->updateRequest();
 }
-
-
+ 
 
 ?>
 <!DOCTYPE html>
@@ -65,7 +70,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   height: inherit;
 }
 .footer {
-  
+   
    left: 0;
    bottom: 0;
    width: 100%;
@@ -113,55 +118,115 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
   <div class="w3-row w3-padding-64">
     <div class="w3-full w3-container">
-        <h2 align="center">Customer List</h2>
-        <table id="sData" width="100%" width="100%" class="table table-stripped table-bordered" align="center">
-            <thead>
-                <th>No</th>
-                <th>Request ID</th>
-                <th>Status</th>
-                <th>Defect</th>
-                <th>Action</th>
-            </thead>    
-            <?php
-            $i = 1;
+
+<!--Start write the code here-->
+        <table align="center" width="60%">
+          <?php
+            foreach($data2 as $row){
+          ?>
+          <tr>
+            <td align="center" colspan="1"><h2>Customer Information</h2></td>
+          </tr>
+          <tr>
+            <td>Name: </td>
+            <td align="left"><?=$row['Cust_Name']?></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Phone Number: </td>
+            <td><?=$row['Cust_Phone']?></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Address: </td>
+            <td><?=$row['Cust_Address']?></td>
+            <td></td>
+          </tr>
+          <?php } ?>
+        </table>
+        <table align="center" width="90%" >
+          <form method="POST" action="">
+    
+          <?php
             foreach($data as $row){
-                echo "<tr>" 
-                . "<td>".$i."</td>"
-                . "<td>".$row['RequestID']."</td&nbsp;>"
-                ."<td>".$row['Request_Status']."</td&nbsp;>"
-                  . "<td>".$row['Defect_Type']."</td&nbsp;>";
-
-
+          ?>
+          <tr><td colspan="4"><hr style="height:2px;border-width:0;color:gray;background-color:gray"></td></tr>
+         <tr>
+            <td align="left" colspan="2"><h2>Request Details</h2></td>
+          </tr>
+          <tr>
+           <td  >Request ID: </td>
+            <td><?=$row['RequestID']?></td>
             
-            ?>
-            <td><form action="" method="POST">
-                    <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
-                    <input type="hidden" name="custID" value="<?=$row['CustomerID']?>">
-                    <input type="button"  onclick="location.href='viewDetail.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="VIEW" name="view">
-                    <input type="button"  onclick="location.href='editRequest.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="EDIT" name="edit">
-                    <input type="submit"  name="delete" value="DELETE">
-                    &nbsp;&nbsp;&nbsp;
-                   
-                    
-                </form></td>
-                <?php
-                $i++;
-                echo "</tr>";
-        }
-        ?>
-  
+          </tr>
+
+
+          <tr>
+           <td ><br>Customer ID: </td>
+           <td><br><?=$row['CustomerID']?></td>
+          </tr>
+
+          <tr>
+           <td ><br>Request Time: </td>
+           <td><br><?=$row['Request_Time']?></td>
+           
+          </tr>
+
+          <tr>
+           <td ><br>Defect Type: </td>
+           <td><br><?=$row['Defect_Type']?></td>
+          </tr>
+
+              
+          <tr>
+           <td ><br>Status: </td>
+                <td><br><?=$row['Request_Status']?>
+                  </td>  
+            </tr>
+            <tr>
+            <td  ><br>Reason : </td>
+            <td><p><br><?=$row['Reason']?></p></td>
+            
+          </tr>
+
+          <tr>
+            <td ><br>Estimate cost RM: </td>
+           <td><br><?=$row['Estimate_Cost']?></td>
+          </tr>
+             
+
+          <tr>        
+           
+            <td align="center" rowspan="3"><br><br><button type="button" onclick="window.location.href='../../ApplicationLayer/Homepage/staffHomepage.php'">CLOSE</button>
+              <button type="button" onclick="window.location.href='editRequest.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'">EDIT</button>
+</td>
+            
+            
+          </tr>
+
+          
+             </form>
+            <?php } ?>
+
         </table>
 
-      <div class="footer">
-      <p align="center">DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
+
+
+
+
+<!-- end -->
+      
 </div >
-    </div>
+
     
   </div>
 
 
 <!-- END MAIN -->
 </div>
+<div class="footer">
+      <br><p align="center">DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
+    </div>
 
 <script>
 // Get the Sidebar
@@ -190,11 +255,3 @@ function w3_close() {
 
 </body>
 </html>
-<script>  
- $(document).ready(function(){  
-      $('#sData').DataTable({
-      "lengthMenu": [[5, 10, 20, -1], [5, 10, 15, "All"]]
-
-      });
- });
- </script>  

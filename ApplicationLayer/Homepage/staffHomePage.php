@@ -1,3 +1,14 @@
+<?php
+ require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RepairServiceController/RepairServiceController.php';
+
+$repairService = new RepairServiceController();
+$data = $repairService->view();
+
+if(isset($_POST['approve'])){
+    $data=$repairService->getToApproveTask();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,7 +98,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <i class="fa fa-remove"></i>
   </a>
   <h4 class="w3-bar-item"><b>Menu</b></h4>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#">Customer Request</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="../../ApplicationLayer/RepairServiceModule/RequestList.php">All Customer Request</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">Tracking</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">My Profile</a>
   
@@ -100,19 +111,28 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <div class="w3-main" style="margin-left:250px">
 
   <div class="w3-row w3-padding-64">
-    <div class="w3-twothird w3-container">
+    <div class="w3-full w3-container">
+
 
 <!--Start write the code here-->  
-     <table>
-      <tr>
-        <td>
-          <img src="../../Images/logo.jpg" width="25" height="25">
-        </td>
-      </tr>
-       
-     </table>
+    
 
-
+      <table id="detail" width="60%" height="70%" align="center" >
+        <form method="POST" action="">
+    <tr> <hr>
+      <td align="center"> <button name="approve" type="button" style="width: 150px;height: 150px" onclick="window.location.href='../../ApplicationLayer/RepairServiceModule/toApproveList.php'"><b> To Approve<b> <br> <br> <img src="../../Images/to_approve.jpg" style="width:100px;height:100px;border:0"/>  </button> </td> 
+      <td align="center"> <button name="progress" type="button" style="width: 150px;height: 150px" onclick="window.location.href='../../ApplicationLayer/RepairServiceModule/inProgressList.php'"><b> Approve & In Progress<b>  <img src="../../Images/in_progress.png" style="width:90px;height:90px;border:0"/>  </button> </td> 
+    </tr>
+    
+    <tr>
+      <td align="center"> <br><br><button name="pending" type="button" style="width: 150px;height: 150px" onclick="window.location.href='../../ApplicationLayer/RepairServiceModule/pendingList.php'"><b> Pending<b><br> <br> <img src="../../Images/pending.png" style="width:100px;height:100px;border:0"/>  </button> </td> 
+      <td align="center"><br><br> <button name="reject" type="button" style="width: 150px;height: 150px" onclick="window.location.href='../../ApplicationLayer/RepairServiceModule/cannotRepairList.php'"> <b>Cannot Be Repair<b> <br> <br> <img src="../../Images/reject.png" style="width:100px;height:100px;border:0"/>  </button> </td> 
+    </tr>
+    <tr>
+      <td align="center" colspan="2"><br><br> <button name="done" type="button" style="width: 150px;height: 150px" onclick="window.location.href='../../ApplicationLayer/RepairServiceModule/doneList.php'"><b> Done<b> <br> <br> <img src="../../Images/done.png" style="width:100px;height:100px;border:0"/>  </button> </td> 
+    </tr>
+  </form>
+  </table>
 
 
 
@@ -121,7 +141,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <!-- end -->
 
         <div class="footer">
-      <p align="center">DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
+      <p align="center"><br><br>DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
 
       
     </div>
