@@ -2,7 +2,7 @@
 require_once '/xampp/htdocs/dercs/BusinessServicesLayer/DeliveryController/DeliveryController.php';
 
 $delivery = new DeliveryController();
-$data = $delivery->viewalldelivery();
+$data = $delivery->viewallrequest();
 
 
 ?>
@@ -111,18 +111,15 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <div class="w3-twothird w3-container">
 
 <!--Start write the code here-->
-
+<h1> Request List </h1>
 <table class="table table-striped table-bordered table-hover" id="deliverytable">
       <thead>
       <tr>
-        <th>Delivery ID</th>
-        <th>Customer ID</th>
-        <th>Rider ID</th>
         <th>Request ID</th>
+        <th>Device Model</th>
+        <th>Defect type</th>
         <th>Delivery Status</th>
-        <th>Delivery Date</th>
-        <th>Delivery Time</th>
-        <th>Delivery Remarks</th>
+        <th>Action</th>
       </tr>
       </thead>
       <tbody>
@@ -133,15 +130,12 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
           
           <form action="" method="POST">
           <tr>
-            
-            <td><?=$row['DeliveryID']?></td>
-            <td><?=$row['CustomerID']?></td>
-            <td><?=$row['RiderID']?></td>
             <td><?=$row['RequestID']?></td>
+            <td><?=$row['Device_Model']?></td>
+            <td><?=$row['Defect_Type']?></td>
             <td><?=$row['Delivery_Status']?></td>
-            <td><?=$row['Delivery_Date']?></td>
-            <td><?=$row['Delivery_Time']?></td>
-            <td><?=$row['Delivery_Remarks']?></td>
+            
+            <td>
           </form>
                 <?php
                   echo "</tr>";

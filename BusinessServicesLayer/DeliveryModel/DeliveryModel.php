@@ -3,7 +3,7 @@ require_once '/xampp/htdocs/dercs/libs/database.php';
 
 class DeliveryModel
 {
-    public $RequestID, $CustomerID, $Cust_Name, $Cust_Address, $DeliveryID, $RiderID, $Delivery_Status, $Delivery_Date, $Delivery_Time, $Delivery_Remarks;
+    public $RequestID, $Device_Model, $Device_Type, $CustomerID, $Cust_Name, $Cust_Address, $DeliveryID, $RiderID, $Delivery_Status, $Delivery_Time, $Delivery_Remarks;
 
     function connect()
     {
@@ -13,9 +13,15 @@ class DeliveryModel
     }
 
     function viewalldelivery(){
-        $sql = "select * from delivery";
+        $sql = "select * from delivery ORDER BY Delivery_Time DESC LIMIT 1";
         return DB::run($sql);
     }
+
+    function viewallrequest(){
+        $sql = "select * from  request";
+        return DB::run($sql);
+    }
+
 
 } 
 

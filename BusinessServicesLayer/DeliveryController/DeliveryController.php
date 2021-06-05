@@ -7,6 +7,11 @@ class DeliveryController
         $delivery = new DeliveryModel();
         return $delivery->viewalldelivery();
     }
+
+    function viewallrequest(){
+        $delivery = new DeliveryModel();
+        return $delivery->viewallrequest();
+    }
 }
 
 ?>
