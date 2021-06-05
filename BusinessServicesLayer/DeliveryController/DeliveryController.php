@@ -11,14 +11,14 @@ class DeliveryController{
     function adddelivery()
     {
         $delivery = new DeliveryModel();
+        $delivery->DeliveryID = null;
         $delivery->CustomerID = $_POST['CustomerID'];
         $delivery->RiderID = $_POST['RiderID'];
         $delivery->RequestID = $_POST['RequestID'];
         $delivery->Delivery_Type = $_POST['Delivery_Type'];
         $delivery->Delivery_Status = $_POST['Delivery_Status'];
         $delivery->Delivery_Time = $_POST['Delivery_Time'];
-        $message = "Succes accept job";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        
 
     }
 }

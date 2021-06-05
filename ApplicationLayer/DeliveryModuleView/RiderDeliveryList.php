@@ -140,15 +140,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                     <input type="hidden" name="CustomerID" value="<?=$row['CustomerID']?>">
                     <input type="hidden" name="RiderID" value="1">
                     <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
-                    <input type="hidden" name="Delivery_Type" value="<?=$row['RequestID']?>">
-                    <input type="hidden" name="Delivery_Status" value="<?=$row['RequestID']?>">
-                    <input type="hidden" name="Delivery_Time" value="<?=$row['RequestID']?>">
+                    <input type="hidden" name="Delivery_Type" value="Pick Up">
+                    <input type="hidden" name="Delivery_Status" value="Ready to pick up">
+                    <input type="hidden" name="Delivery_Time" value="CurrentTime">
                     <input type="submit" name="accept" value="Accept" class="btn btn-outline-primary h5 btn-lg" />
-                    
-                    
-                    &nbsp;&nbsp;&nbsp;
-                   
-                    
                 </form></td>
                 <?php
                 $i++;
