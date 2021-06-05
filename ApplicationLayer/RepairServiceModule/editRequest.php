@@ -10,6 +10,12 @@ $data = $request->viewRequest($RequestID);
 $data2 = $request->getName($CustomerID);
 
 if(isset($_POST['done'])){
+
+  if ($_POST['Request_Status'] == "Done") {
+    $Delivery_Status="Ready for delivery";
+  }
+  else
+    $Delivery_Status="Accepted";
      
     $request->updateRequest();
 }
@@ -198,6 +204,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
           <tr>        
             <td align="center"><button type="button" onclick="window.location.href='RequestList.php'">CANCEL</button></td>
             <td align="center"><input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
+              <input type="hidden" name="Delivery_Status">
             <input type="submit" name="done" value="DONE" ></td>
             
           </tr>

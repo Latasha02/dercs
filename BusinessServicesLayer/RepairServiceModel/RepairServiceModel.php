@@ -49,8 +49,8 @@ class RepairServiceModel{
 
     function updateRequestStatus()
     {
-        $sql = "update request set Request_Status=:Request_Status, Estimate_Cost=:Estimate_Cost, Reason=:Reason where RequestID=:RequestID";
-        $args = [':RequestID'=>$this->RequestID,':Request_Status'=>$this->Request_Status,':Estimate_Cost'=>$this->Estimate_Cost,':Reason'=>$this->Reason];
+        $sql = "update request set Request_Status=:Request_Status, Estimate_Cost=:Estimate_Cost, Reason=:Reason, Delivery_Status=:Delivery_Status where RequestID=:RequestID";
+        $args = [':RequestID'=>$this->RequestID,':Request_Status'=>$this->Request_Status,':Estimate_Cost'=>$this->Estimate_Cost,':Reason'=>$this->Reason,':Delivery_Status'=>$this->Delivery_Status];
         $stmt = RepairServiceModel::connect()->prepare($sql);
         $stmt->execute($args);
         return $stmt;

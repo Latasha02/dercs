@@ -196,8 +196,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
              
 
           <tr>        
-            <td align="right" ><br><br></td>
-            <td align="center"><br><br><button type="button" onclick="window.location.href='../../ApplicationLayer/Homepage/staffHomepage.php'">CLOSE</button>
+           
+            <td align="center" rowspan="3"><br><br><button type="button" onclick="window.location.href='../../ApplicationLayer/Homepage/staffHomepage.php'">CLOSE</button>
               <button type="button" onclick="window.location.href='editRequest.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'">EDIT</button>
 </td>
             

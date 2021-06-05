@@ -199,8 +199,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
             <td align="center"><button type="button" onclick="window.location.href='RequestList.php'">BACK</button></td>
             <td align="center"><input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
               <input type="hidden" name="Request_Status" value="Approved">
+              <input type="hidden" name="Reason" value="Waiting for device.">
               <input type="hidden" name="Delivery_Status" value="Accepted">
-              <input type="hidden" name="Reason" value="Your Request is Approved.">
+              
             <input type="submit" name="approve" value="APPROVE" ></td>
             
           </tr>

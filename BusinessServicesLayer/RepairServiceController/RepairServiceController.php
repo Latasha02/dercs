@@ -47,6 +47,11 @@ class RepairServiceController{
         $request = new RepairServiceModel();
         $request->RequestID = $_POST['RequestID'];
         $request->Request_Status = $_POST['Request_Status'];
+        $status="Done";
+        if ($_POST['Request_Status']==$status) {
+            $request->Delivery_Status = "Ready for delivery";
+        }
+         //$request->Delivery_Status = $Delivery_Status;
         $request->Reason = $_POST['Reason'];
         $request->Estimate_Cost = $_POST['Estimate_Cost'];
        
