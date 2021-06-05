@@ -1,18 +1,11 @@
-<?php 
-require_once '\xampp\htdocs\dercs\BusinessServicesLayer\DeliveryModel\DeliveryModel.php';
-
-class DeliveryController
-{
-	function viewalldelivery(){
-        $delivery = new DeliveryModel();
-        return $delivery->viewalldelivery();
-    }
-
-    function viewallrequest($CustomerID){
+<?php
+require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/DeliveryModel/DeliveryModel.php';
+class DeliveryController{
+    
+   
+    function view(){
         $request = new DeliveryModel();
-        $request->CustomerID = $CustomerID;
-        return $request->viewallrequest();
+        return $request->view();
     }
 }
-
 ?>
