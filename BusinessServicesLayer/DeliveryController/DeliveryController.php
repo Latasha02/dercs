@@ -8,9 +8,10 @@ class DeliveryController
         return $delivery->viewalldelivery();
     }
 
-    function viewallrequest(){
-        $delivery = new DeliveryModel();
-        return $delivery->viewallrequest();
+    function viewallrequest($CustomerID){
+        $request = new DeliveryModel();
+        $request->CustomerID = $CustomerID;
+        return $request->viewallrequest();
     }
 }
 

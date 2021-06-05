@@ -18,8 +18,10 @@ class DeliveryModel
     }
 
     function viewallrequest(){
-        $sql = "select * from  request";
-        return DB::run($sql);
+        $sql = "select * from  request where CustomerID=:CustomerID";
+        $args = [':CustomerID' => $this->CustomerID];
+        $stmt = DB::run($sql, $args);
+        return $stmt;
     }
 
 

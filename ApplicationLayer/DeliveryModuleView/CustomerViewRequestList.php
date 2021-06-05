@@ -1,8 +1,10 @@
 <?php
 require_once '/xampp/htdocs/dercs/BusinessServicesLayer/DeliveryController/DeliveryController.php';
+session_start();
+$CustomerID = $_SESSION['CustomerID'];
 
-$delivery = new DeliveryController();
-$data = $delivery->viewallrequest();
+$request = new DeliveryController();
+$data = $request->viewallrequest($CustomerID);
 
 
 ?>
