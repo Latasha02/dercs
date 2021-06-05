@@ -10,7 +10,7 @@ class RepairServiceModel{
     }
 
     function view(){
-        $sql = "select * from request";
+        $sql = "select * from request where Request_Status like '%In Progress%' OR Request_Status like '%Approved%' OR Request_Status like '%Pending%'  OR Request_Status like '%Cannot Be Repaired%' OR Request_Status like '%Done%'";
         return RepairServiceModel::connect()->query($sql);;
     }
 

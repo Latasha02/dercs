@@ -113,7 +113,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
   <div class="w3-row w3-padding-64">
     <div class="w3-full w3-container">
-        <h2 align="center">Customer List</h2>
+        <h2 align="center">All Customer List</h2>
         <table id="sData" width="100%" width="100%" class="table table-stripped table-bordered" align="center">
             <thead>
                 <th>No</th>
@@ -137,7 +137,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
             <td><form action="" method="POST">
                     <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
                     <input type="hidden" name="custID" value="<?=$row['CustomerID']?>">
-                    <input type="button"  onclick="location.href='viewDetail.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="VIEW" name="view">
+                    <input type="button"  onclick="location.href='staffVieweditedInfo.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="VIEW" name="view" style="background-color:cornflowerBlue">
                     <input type="button"  onclick="location.href='editRequest.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="EDIT" name="edit">
                     <input type="submit"  name="delete" value="DELETE">
                     &nbsp;&nbsp;&nbsp;
@@ -153,7 +153,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
         </table>
 
       <div class="footer">
-      <p align="center">DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
+      <p align="center"><br><br><br><br>DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
 </div >
     </div>
     
