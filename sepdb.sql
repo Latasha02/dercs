@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2021 at 09:56 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.6
+-- Generation Time: Jun 05, 2021 at 01:32 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,6 +35,14 @@ CREATE TABLE `customers` (
   `Cust_Address` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`CustomerID`, `Cust_Password`, `Cust_Name`, `Cust_Phone`, `Cust_Address`) VALUES
+(1, 'halo', 'Latasha', 189744128, 'Setapak Air Panas'),
+(2, 'halo', 'Nigel', 189744125, 'Danau Kota KL');
+
 -- --------------------------------------------------------
 
 --
@@ -44,12 +52,10 @@ CREATE TABLE `customers` (
 CREATE TABLE `delivery` (
   `DeliveryID` int(11) NOT NULL,
   `CustomerID` int(11) NOT NULL,
-  `StaffID` int(11) NOT NULL,
   `RiderID` int(11) NOT NULL,
   `RequestID` int(11) NOT NULL,
-  `PaymentID` int(11) NOT NULL,
+  `Delivery_Type` varchar(50) NOT NULL,
   `Delivery_Status` varchar(50) NOT NULL,
-  `Delivery_Date` date NOT NULL,
   `Delivery_Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Delivery_Remarks` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -106,6 +112,14 @@ CREATE TABLE `request` (
   `Delivery_Status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`RequestID`, `CustomerID`, `StaffID`, `Request_Time`, `Device_Type`, `Device_Model`, `Defect_Type`, `Message`, `Request_Status`, `Reason`, `Estimate_Cost`, `Delivery_Status`) VALUES
+(1, 1, 52, '2021-06-05 05:47:16', 'phone', 'P40 pro', 'idk', 'Its not working well', 'Approved', 'Your Request is Approved.', 100, 'Accepted'),
+(2, 2, 1, '2021-06-04 20:30:42', 'phone', 'P40 pro', 'idk really', 'HUHHUHUHUUH', 'Waiting', 'HUHUHUHUBBHBH', 1000, 'Requested');
+
 -- --------------------------------------------------------
 
 --
@@ -120,6 +134,13 @@ CREATE TABLE `rider` (
   `Rider_LicenseNo` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `rider`
+--
+
+INSERT INTO `rider` (`RiderID`, `Rider_Password`, `Rider_Name`, `Rider_PhoneNo`, `Rider_LicenseNo`) VALUES
+(1, 'halo', 'nigel', 152648452, '5263148');
+
 -- --------------------------------------------------------
 
 --
@@ -132,6 +153,13 @@ CREATE TABLE `staff` (
   `Staff_Name` varchar(50) NOT NULL,
   `Staff_PhoneNo` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`StaffID`, `Staff_Password`, `Staff_Name`, `Staff_PhoneNo`) VALUES
+(1, 'halo', 'Staff1', 125263987);
 
 --
 -- Indexes for dumped tables
@@ -187,13 +215,13 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `delivery`
 --
 ALTER TABLE `delivery`
-  MODIFY `DeliveryID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `DeliveryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `invoice`
@@ -211,19 +239,19 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `RequestID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `RequestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `rider`
 --
 ALTER TABLE `rider`
-  MODIFY `RiderID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `RiderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `StaffID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `StaffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

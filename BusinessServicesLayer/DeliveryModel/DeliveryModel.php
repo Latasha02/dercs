@@ -10,8 +10,16 @@ class DeliveryModel{
     }
 
     function view(){
-        $sql = "select * from request WHERE Request_Status LIKE 'a%' ";
-        return DeliveryModel::connect()->query($sql);;
+        $sql = "select * FROM request INNER JOIN customers ON request.CustomerID = customers.CustomerID WHERE request.Request_Status LIKE 'a%' ";
+        return DeliveryModel::connect()->query($sql);
+    }
+
+    function adddelivery()
+    {
+        $sql = "insert into delivery(CustomerID, RiderID, RequestID, Delivery_Type, Delivery_Status, Delivery_Time) values (:CustomerID, :RiderID, :RequestID, :Delivery_Type, :Delivery_Status, :Delivery_Time)";
+        $args = [':CustomerID'=>$this->CustomerID, 'RiderID'=>$this->RiderID, 'RequestID'=>$this->RequestID, 'Delivery_Type'=>$this->Delivery_Type, 'Delivery_Status'=>$this->Delivery_Status, 'Delivery_Time'=>$this->Delivery_Time];
+        return DeliveryModel::connect()->query($sql, $args);
+
     }
 
 } 

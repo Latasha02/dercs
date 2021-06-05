@@ -4,6 +4,9 @@
 $delivery = new DeliveryController();
 $data = $delivery->view();
 
+if (isset($_POST['accept'])) {
+    $delivery->adddelivery();
+}
 
 
 ?>
@@ -114,26 +117,34 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
           <h1> Pick Up List</h1>
             <thead>
                 <th>No</th>
-                <th>Request ID</th>
-                <th>Status</th>
-                <th>Defect</th>
+                <th>Customer Name</th>
+                <th>Customer Phone Number</th>
+                <th>Customer Address </th>
                 <th>Action</th>
-            </thead>    
+            </thead>
+
             <?php
             $i = 1;
             foreach($data as $row){
+
                 echo "<tr>" 
                 . "<td>".$i."</td>"
-                . "<td>".$row['RequestID']."</td&nbsp;>"
-                ."<td>".$row['Delivery_Status']."</td&nbsp;>"
-                  . "<td>".$row['Defect_Type']."</td&nbsp;>";
+                . "<td>".$row['Cust_Name']."</td&nbsp;>"
+                ."<td>".$row['Cust_Phone']."</td&nbsp;>"
+                  . "<td>".$row['Cust_Address']."</td&nbsp;>";
 
 
             
             ?>
-            <td><form action="" method="POST">
+            <td><form method="POST"> 
+                    <input type="hidden" name="CustomerID" value="<?=$row['CustomerID']?>">
+                    <input type="hidden" name="RiderID" value="1">
                     <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
-                    <input type="hidden" name="custID" value="<?=$row['CustomerID']?>">
+                    <input type="hidden" name="Delivery_Type" value="<?=$row['RequestID']?>">
+                    <input type="hidden" name="Delivery_Status" value="<?=$row['RequestID']?>">
+                    <input type="hidden" name="Delivery_Time" value="<?=$row['RequestID']?>">
+                    <input type="submit" name="accept" value="Accept" class="btn btn-outline-primary h5 btn-lg" />
+                    
                     
                     &nbsp;&nbsp;&nbsp;
                    
