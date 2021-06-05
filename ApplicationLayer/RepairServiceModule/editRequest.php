@@ -202,10 +202,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
 
           <tr>        
-            <td align="center"><button type="button" onclick="window.location.href='RequestList.php'">CANCEL</button></td>
+            <td align="center"><button type="button" onclick="window.location.href='RequestList.php'" style="background-color:#ff9966">CANCEL</button></td>
             <td align="center"><input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
               <input type="hidden" name="Delivery_Status">
-            <input type="submit" name="done" value="DONE" ></td>
+            <input type="submit" name="done" value="DONE" style="font-weight: bold;background-color: #4dff4d"></td>
             
           </tr>
              

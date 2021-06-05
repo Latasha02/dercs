@@ -138,8 +138,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                     <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
                     <input type="hidden" name="custID" value="<?=$row['CustomerID']?>">
                     <input type="button"  onclick="location.href='staffVieweditedInfo.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="VIEW" name="view">
-                    <input type="button"  onclick="location.href='editRequest.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="EDIT" name="edit" disabled>
-                    <input type="submit"  name="delete" value="DELETE">
+                    <input type="button"  onclick="location.href='editRequest.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="EDIT" name="edit" style="font-weight: bold;background-color: #80bfff" disabled>
+                    <input type="submit"  name="delete" value="DELETE" style="font-weight: bold;background-color: #ff1a1a">
                     &nbsp;&nbsp;&nbsp;
                     
                    

@@ -196,13 +196,13 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
 
           <tr>        
-            <td align="center"><button type="button" onclick="window.location.href='RequestList.php'">BACK</button></td>
+            <td align="center"><button type="button" onclick="window.location.href='RequestList.php'" style="background-color: #66b3ff"><b>BACK<b></button></td>
             <td align="center"><input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
               <input type="hidden" name="Request_Status" value="Approved">
               <input type="hidden" name="Reason" value="Waiting for device.">
               <input type="hidden" name="Delivery_Status" value="Accepted">
               
-            <input type="submit" name="approve" value="APPROVE" ></td>
+            <input type="submit" name="approve" value="APPROVE" style="background-color: #80ff80"></td>
             
           </tr>
              
