@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2021 at 09:28 PM
+-- Generation Time: Jun 06, 2021 at 09:47 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -54,7 +54,6 @@ CREATE TABLE `delivery` (
   `CustomerID` int(11) NOT NULL,
   `RiderID` int(11) NOT NULL,
   `RequestID` int(11) NOT NULL,
-  `Request_Status` varchar(100) NOT NULL,
   `Delivery_Type` varchar(50) NOT NULL,
   `Delivery_Status` varchar(50) NOT NULL,
   `Delivery_Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -117,8 +116,8 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`RequestID`, `CustomerID`, `StaffID`, `Request_Time`, `Device_Type`, `Device_Model`, `Defect_Type`, `Message`, `Request_Status`, `Reason`, `Estimate_Cost`, `Delivery_Status`) VALUES
-(1, 1, 52, '2021-06-05 05:47:16', 'phone', 'P40 pro', 'idk', 'Its not working well', 'Approved', 'Your Request is Approved.', 100, 'Accepted'),
-(2, 2, 1, '2021-06-05 12:20:25', 'phone', 'P40 pro', 'idk really', 'HUHHUHUHUUH', 'Approved', 'HUHUHUHUBBHBH', 1000, 'Requested');
+(1, 1, 52, '2021-06-06 07:41:05', 'phone', 'P40 pro', 'idk', 'Its not working well', 'Processing', 'Your Request is Approved.', 100, 'Accepted'),
+(2, 2, 1, '2021-06-06 07:46:42', 'phone', 'P40 pro', 'idk really', 'HUHHUHUHUUH', 'Processing', 'HUHUHUHUBBHBH', 1000, 'Requested');
 
 -- --------------------------------------------------------
 
@@ -221,7 +220,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `delivery`
 --
 ALTER TABLE `delivery`
-  MODIFY `DeliveryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `DeliveryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `invoice`

@@ -15,9 +15,12 @@ class DeliveryModel{
     }
 
     function viewprocessing(){
-        $sql = "select * FROM request INNER JOIN customers ON request.CustomerID = customers.CustomerID WHERE request.Request_Status LIKE '%processing%' ";
+          $sql = "select * FROM request INNER JOIN customers ON( request.CustomerID = customers.CustomerID) INNER JOIN delivery ON request.RequestID = delivery.RequestID WHERE request.Request_Status LIKE '%processing%' ";
         return DeliveryModel::connect()->query($sql);
+        
     }
+
+
 
     function updatereqstatus()
     {
@@ -31,17 +34,18 @@ class DeliveryModel{
 
     function adddelivery()
     {
-        $sql = "insert into delivery(CustomerID, RiderID, RequestID, Request_Status,  Delivery_Type, Delivery_Status, Delivery_Time) values (:CustomerID, :RiderID, :RequestID, :Request_Status, :Delivery_Type, :Delivery_Status, :Delivery_Time)";
-        $args = [':CustomerID'=>$this->CustomerID, ':RiderID'=>$this->RiderID, ':RequestID'=>$this->RequestID, ':Request_Status'=>$this->Request_Status,':Delivery_Type'=>$this->Delivery_Type, ':Delivery_Status'=>$this->Delivery_Status, ':Delivery_Time'=>$this->Delivery_Time];
+        $sql = "insert into delivery(CustomerID, RiderID, RequestID, Delivery_Type, Delivery_Status, Delivery_Time) values (:CustomerID, :RiderID, :RequestID, :Delivery_Type, :Delivery_Status, :Delivery_Time)";
+        $args = [':CustomerID'=>$this->CustomerID, ':RiderID'=>$this->RiderID, ':RequestID'=>$this->RequestID, ':Delivery_Type'=>$this->Delivery_Type, ':Delivery_Status'=>$this->Delivery_Status, ':Delivery_Time'=>$this->Delivery_Time];
         $stmt = DeliveryModel::connect()->prepare($sql);
         $stmt->execute($args);
         return $stmt;  
-        $sql = "update delivery set Delivery_Status=:Delivery_Status WHERE DeliveryID=:DeliveryID";
+        $sql = "update delivery set Delivery_Status=:Delivery_Status WHERE DeliveryID=:DeliverytID";
         $args = [':Delivery_Status'=>$this->Delivery_Status, ':DeliveryID'=>$this->DeliveryID];
         $stmt = DeliveryModel::connect()->prepare($sql);
         $stmt->execute($args);
         return $stmt;
     }
+        
 
     
 

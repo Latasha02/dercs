@@ -144,9 +144,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
             
             ?>
             <td><form method="POST"> 
-              
-              
-                    
                     <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
                     <input type="hidden" name="Request_Status" value="Processing">
                     <input type="submit" name="accept" value="Accept" class="btn btn-outline-primary h5 btn-lg"/>
@@ -167,6 +164,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                 <th>Customer Name</th>
                 <th>Customer Phone Number</th>
                 <th>Customer Address </th>
+                <th>DeliveryStatus</th>
                 <th>Action</th>
             </thead>
 
@@ -178,18 +176,18 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                 . "<td>".$i."</td>"
                 . "<td>".$row1['Cust_Name']."</td&nbsp;>"
                 ."<td>".$row1['Cust_Phone']."</td&nbsp;>"
-                  . "<td>".$row1['Cust_Address']."</td&nbsp;>";
+                  . "<td>".$row1['Cust_Address']."</td&nbsp;>"
+                 .  "<td>".$row1['Delivery_Status']."</td&nbsp;>";
 
             ?>
             <td><form method="POST"> 
-                    <input type="hidden" name="CustomerID" value="<?=$row['CustomerID']?>">
+                    <input type="hidden" name="CustomerID" value="<?=$row1['CustomerID']?>">
                     <input type="hidden" name="RiderID" value=1>
-                    <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
-                    <input type="hidden" name="Request_Status" value="Processing">
+                    <input type="hidden" name="RequestID" value="<?=$row1['RequestID']?>">
                     <input type="hidden" name="Delivery_Type" value="Pick Up">
-                    <input type="hidden" name="Delivery_Status" value="Picked Up">
+                    <input type="hidden" name="Delivery_Status" value="On the way">
                     <input type="hidden" name="Delivery_Time" value="<?php echo date('Y-m-d H:i:s'); ?>">
-                    <input type="submit" name="pickup" value="View" class="btn btn-outline-primary h5 btn-lg" />
+                    <input type="submit" name="pickup" value="Ready to Pick Up" class="btn btn-outline-primary h5 btn-lg" />
                 </form>
               </td>
                 <?php
