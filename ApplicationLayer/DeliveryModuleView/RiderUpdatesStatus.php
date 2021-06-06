@@ -1,19 +1,20 @@
 <?php
- require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RepairServiceController/RepairServiceController.php';
+ require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/DeliveryController/DeliveryController.php';
 
+$request = new DeliveryController();
+$delivery = new DeliveryController();
 
-$RequestID = $_GET['RequestID'];
-$CustomerID = $_GET['custID'];
+$data = $request->view();
+$data1 = $request->viewprocessing();
 
-$request = new RepairServiceController();
-$data = $request->viewRequest($RequestID);
-$data2 = $request->getName($CustomerID);
-
-if(isset($_POST['done'])){
-     
-    $request->updateRequest();
+if (isset($_POST['accept'])) {
+    $request->updatereqstatus();
 }
- 
+
+if 
+(isset($_POST['pickup'])) {
+    $delivery->adddelivery();}
+
 
 ?>
 <!DOCTYPE html>
@@ -70,7 +71,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   height: inherit;
 }
 .footer {
-   
+  
    left: 0;
    bottom: 0;
    width: 100%;
@@ -118,103 +119,90 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
   <div class="w3-row w3-padding-64">
     <div class="w3-full w3-container">
+        
+        <table id="sData" width="100%" width="100%" class="table table-stripped table-bordered" align="center">
+          <h1>Accept Job</h1>
+            <thead>
+                <th>No</th>
+                <th>Customer Name</th>
+                <th>Customer Phone Number</th>
+                <th>Customer Address </th>
+                <th>Action</th>
+            </thead>
 
-<!--Start write the code here-->
-        <table align="center" width="60%">
-          <?php
-            foreach($data2 as $row){
-          ?>
-          <tr>
-            <td align="center" colspan="1"><h2>Customer Information</h2></td>
-          </tr>
-          <tr>
-            <td>Name: </td>
-            <td align="left"><?=$row['Cust_Name']?></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Phone Number: </td>
-            <td><?=$row['Cust_Phone']?></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Address: </td>
-            <td><?=$row['Cust_Address']?></td>
-            <td></td>
-          </tr>
-          <?php } ?>
-        </table>
-        <table align="center" width="60%" >
-          <form method="POST" action="">
-    
-          <?php
+            <?php
+            $i = 1;
             foreach($data as $row){
-          ?>
-          <tr><td colspan="4"><hr style="height:2px;border-width:0;color:gray;background-color:gray"></td></tr>
-         <tr>
-            <td align="center" colspan="1"><h2>Request Details</h2></td>
-          </tr>
-          <tr>
-           <td  >Request ID: </td>
-            <td><?=$row['RequestID']?></td>
-            <td >Reason : </td>
-            <td><input type="text" name="Reason" placeholder="Enter reason here" size="20" required></td>
-          </tr>
+
+                echo "<tr>" 
+                . "<td>".$i."</td>"
+                . "<td>".$row['Cust_Name']."</td&nbsp;>"
+                ."<td>".$row['Cust_Phone']."</td&nbsp;>"
+                  . "<td>".$row['Cust_Address']."</td&nbsp;>";
 
 
-          <tr>
-           <td ><br>Customer ID: </td>
-           <td><br><?=$row['CustomerID']?></td>
-          </tr>
-
-          <tr>
-           <td ><br>Request Time: </td>
-           <td><br><?=$row['Request_Time']?></td>
-           <td ><br>Estimate cost RM: </td>
-           <td><br><input type="text" name="Estimate_Cost" placeholder="Estimate cost" required></td>
-          </tr>
-
-          <tr>
-           <td ><br>Defect Type: </td>
-           <td><br><?=$row['Defect_Type']?></td>
-          </tr>
-
-              
-          <tr>
-           <td ><br>Status: </td>
-                <td><br><input type="radio" name="Request_Status" value="On Progress" <?=$row['Request_Status']=="On Progress" ? "checked" : ""?> required checked>&nbsp;On Progress
-                    <br>
-                    <input type="radio" name="Request_Status" value="Pending" <?=$row['Request_Status']=="Pending" ? "checked" : ""?> required>&nbsp;Pending<br>
-                    <input type="radio" name="Request_Status" value="Cannot Be Repaired" <?=$row['Request_Status']=="Cannot Be Repaired" ? "checked" : ""?> required>&nbsp;Cannot Be Repaired
-                  </td>
-
-                  
-            </tr></td>
-          </tr>
-
-
-
-          <tr>        
-            <td align="center"><button type="button" onclick="window.location.href='RequestList.php'">CANCEL</button></td>
-            <td align="center"><input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
-            <input type="submit" name="done" value="DONE" ></td>
             
-          </tr>
-             
-             </form>
-            <?php } ?>
-
+            ?>
+            <td><form method="POST"> 
+              
+              
+                    
+                    <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
+                    <input type="hidden" name="Request_Status" value="Processing">
+                    <input type="submit" name="accept" value="Accept" class="btn btn-outline-primary h5 btn-lg"/>
+                </form>
+              </td>
+                <?php
+                $i++;
+                echo "</tr>";
+        }
+        ?>
+  
         </table>
 
+        <table id="sData" width="100%" width="100%" class="table table-stripped table-bordered" align="center">
+          <h1>Update Pick Status</h1>
+            <thead>
+                <th>No</th>
+                <th>Customer Name</th>
+                <th>Customer Phone Number</th>
+                <th>Customer Address </th>
+                <th>Action</th>
+            </thead>
 
+            <?php
+            $i = 1;
+            foreach($data1 as $row1){
 
+                echo "<tr>" 
+                . "<td>".$i."</td>"
+                . "<td>".$row1['Cust_Name']."</td&nbsp;>"
+                ."<td>".$row1['Cust_Phone']."</td&nbsp;>"
+                  . "<td>".$row1['Cust_Address']."</td&nbsp;>";
 
+            ?>
+            <td><form method="POST"> 
+                    <input type="hidden" name="CustomerID" value="<?=$row['CustomerID']?>">
+                    <input type="hidden" name="RiderID" value=1>
+                    <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
+                    <input type="hidden" name="Request_Status" value="Processing">
+                    <input type="hidden" name="Delivery_Type" value="Pick Up">
+                    <input type="hidden" name="Delivery_Status" value="Picked Up">
+                    <input type="hidden" name="Delivery_Time" value="<?php echo date('Y-m-d H:i:s'); ?>">
+                    <input type="submit" name="pickup" value="View" class="btn btn-outline-primary h5 btn-lg" />
+                </form>
+              </td>
+                <?php
+                $i++;
+                echo "</tr>";
+        }
+        ?>
+  
+        </table>
 
-<!-- end -->
-      
-</div >
-<div class="footer">
+      <div class="footer">
       <p align="center">DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
+</div >
     </div>
     
   </div>
@@ -250,3 +238,16 @@ function w3_close() {
 
 </body>
 </html>
+<script>  
+ $(document).ready(function(){  
+      $('#sData').DataTable({
+      "lengthMenu": [[5, 10, 20, -1], [5, 10, 15, "All"]]
+
+      });
+ });
+
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+
+ </script>  

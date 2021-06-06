@@ -2,12 +2,18 @@
  require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/DeliveryController/DeliveryController.php';
 
 $request = new DeliveryController();
+$delivery = new DeliveryController();
 
 $data = $request->view();
+$data1 = $request->viewprocessing();
 
 if (isset($_POST['accept'])) {
     $request->updatereqstatus();
 }
+
+if 
+(isset($_POST['pickup'])) {
+    $delivery->adddelivery();}
 
 
 ?>
@@ -115,7 +121,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <div class="w3-full w3-container">
         
         <table id="sData" width="100%" width="100%" class="table table-stripped table-bordered" align="center">
-          <h1> Pick Up List</h1>
+          <h1>Accept Job</h1>
             <thead>
                 <th>No</th>
                 <th>Customer Name</th>
@@ -143,7 +149,47 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                     
                     <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
                     <input type="hidden" name="Request_Status" value="Processing">
-                    <input type="submit" name="accept" value="Accept" class="btn btn-outline-primary h5 btn-lg" />
+                    <input type="submit" name="accept" value="Accept" class="btn btn-outline-primary h5 btn-lg"/>
+                </form>
+              </td>
+                <?php
+                $i++;
+                echo "</tr>";
+        }
+        ?>
+  
+        </table>
+
+        <table id="sData" width="100%" width="100%" class="table table-stripped table-bordered" align="center">
+          <h1>Update Pick Status</h1>
+            <thead>
+                <th>No</th>
+                <th>Customer Name</th>
+                <th>Customer Phone Number</th>
+                <th>Customer Address </th>
+                <th>Action</th>
+            </thead>
+
+            <?php
+            $i = 1;
+            foreach($data1 as $row1){
+
+                echo "<tr>" 
+                . "<td>".$i."</td>"
+                . "<td>".$row1['Cust_Name']."</td&nbsp;>"
+                ."<td>".$row1['Cust_Phone']."</td&nbsp;>"
+                  . "<td>".$row1['Cust_Address']."</td&nbsp;>";
+
+            ?>
+            <td><form method="POST"> 
+                    <input type="hidden" name="CustomerID" value="<?=$row['CustomerID']?>">
+                    <input type="hidden" name="RiderID" value=1>
+                    <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
+                    <input type="hidden" name="Request_Status" value="Processing">
+                    <input type="hidden" name="Delivery_Type" value="Pick Up">
+                    <input type="hidden" name="Delivery_Status" value="Picked Up">
+                    <input type="hidden" name="Delivery_Time" value="<?php echo date('Y-m-d H:i:s'); ?>">
+                    <input type="submit" name="pickup" value="View" class="btn btn-outline-primary h5 btn-lg" />
                 </form>
               </td>
                 <?php
@@ -199,4 +245,9 @@ function w3_close() {
 
       });
  });
+
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+
  </script>  

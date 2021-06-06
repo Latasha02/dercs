@@ -14,6 +14,11 @@ class DeliveryModel{
         return DeliveryModel::connect()->query($sql);
     }
 
+    function viewprocessing(){
+        $sql = "select * FROM request INNER JOIN customers ON request.CustomerID = customers.CustomerID WHERE request.Request_Status LIKE '%processing%' ";
+        return DeliveryModel::connect()->query($sql);
+    }
+
     function updatereqstatus()
     {
         $sql = "update request set Request_Status=:Request_Status WHERE RequestID=:RequestID";
@@ -31,11 +36,11 @@ class DeliveryModel{
         $stmt = DeliveryModel::connect()->prepare($sql);
         $stmt->execute($args);
         return $stmt;  
-        $sql1 = "update request INNER JOIN delivery ON request.RequestID=delivery.RequestID SET delivery.Request_Status=:request.Request_Status WHERE request.RequestID=:delivery.RequestID";
-        $args1 = [':Request_Status'=>$this->Request_Status, ':RequestID'=>$this->RequestID];
-        $stmt1 = DeliveryModel::connect()->prepare($sql1);
-        $stmt1->execute($args1);
-        return $stmt1; 
+        $sql = "update delivery set Delivery_Status=:Delivery_Status WHERE DeliveryID=:DeliveryID";
+        $args = [':Delivery_Status'=>$this->Delivery_Status, ':DeliveryID'=>$this->DeliveryID];
+        $stmt = DeliveryModel::connect()->prepare($sql);
+        $stmt->execute($args);
+        return $stmt;
     }
 
     

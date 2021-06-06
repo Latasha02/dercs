@@ -8,6 +8,11 @@ class DeliveryController{
         return $request->view();
     }
 
+    function viewprocessing(){
+        $request = new DeliveryModel();
+        return $request->viewprocessing();
+    }
+
     
 
     function updatereqstatus()
@@ -17,7 +22,9 @@ class DeliveryController{
         $request->Request_Status = $_POST['Request_Status'];
 
         $request->updatereqstatus();
-        echo "<script>alert('Added Successfully')</script>";
+        echo "<script type='text/javascript'>alert('$message');
+        window.location = '../../ApplicationLayer/DeliveryModuleView/RiderDeliveryList.php';</script>";
+        
     }
 
     function adddelivery()
@@ -31,7 +38,8 @@ class DeliveryController{
         $delivery->Delivery_Status = $_POST['Delivery_Status'];
         $delivery->Delivery_Time = $_POST['Delivery_Time'];
         $delivery->adddelivery();
-        echo "<script>alert('Added Successfully')</script>";
+        header("Location: ../../ApplicationLayer/DeliveryModuleView/RiderUpdatesStatus.php");
+        
 
     }
 
