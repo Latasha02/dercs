@@ -8,6 +8,18 @@ class DeliveryController{
         return $request->view();
     }
 
+    
+
+    function updatereqstatus()
+    {
+        $request = new DeliveryModel();
+        $request->RequestID = $_POST['RequestID'];
+        $request->Request_Status = $_POST['Request_Status'];
+
+        $request->updatereqstatus();
+        echo "<script>alert('Added Successfully')</script>";
+    }
+
     function adddelivery()
     {
         $delivery = new DeliveryModel();
@@ -22,5 +34,7 @@ class DeliveryController{
         echo "<script>alert('Added Successfully')</script>";
 
     }
+
+    
 }
 ?>
