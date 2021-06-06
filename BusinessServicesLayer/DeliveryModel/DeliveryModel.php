@@ -15,7 +15,7 @@ class DeliveryModel{
     }
 
     function viewprocessing(){
-          $sql = "select * FROM request INNER JOIN customers ON( request.CustomerID = customers.CustomerID) INNER JOIN delivery ON request.RequestID = delivery.RequestID WHERE request.Request_Status LIKE '%processing%' ";
+           $sql = "SELECT * FROM ((delivery INNER JOIN customers ON delivery.CustomerID=customers.CustomerID) INNER JOIN request ON delivery.RequestID=request.RequestID) WHERE request.Request_Status LIKE '%Processing%' ";
         return DeliveryModel::connect()->query($sql);
         
     }
