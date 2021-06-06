@@ -18,6 +18,24 @@
             window.location = '../../ApplicationLayer/managePayment/PaymentInformation.php';</script>";
         }
     }
+
+    function viewCheckout(){
+
+        $checkout = new PaymentModel();
+        return $checkout->viewAll();
+    }
+
+    function viewInvoice1(){
+
+        $invoiceAtas = new PaymentModel();
+        return $invoiceAtas->viewAtas();
+    }
+
+    function viewInvoice2(){
+
+        $invoiceBwh = new PaymentModel();
+        return $invoiceBwh->viewBwh();
+    }
 }
 
 ?>
