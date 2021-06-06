@@ -4,41 +4,30 @@ class DeliveryController{
     
    
     function view(){
-        $request = new DeliveryModel();
-        return $request->view();
+        $del = new DeliveryModel();
+        return $del->view();
     }
 
     function viewprocessing(){
-        $request = new DeliveryModel();
-        return $request->viewprocessing();
+        $del = new DeliveryModel();
+        return $del->viewprocessing();
     }
 
     
 
-    function updatereqstatus()
-    {
-        $request = new DeliveryModel();
-        $request->RequestID = $_POST['RequestID'];
-        $request->Request_Status = $_POST['Request_Status'];
-
-        $request->updatereqstatus();
-        echo "<script type='text/javascript'>alert('$message');
-        window.location = '../../ApplicationLayer/DeliveryModuleView/RiderDeliveryList.php';</script>";
-        
-    }
+    
 
     function adddelivery()
     {
-        $delivery = new DeliveryModel();
-        $delivery->CustomerID = $_POST['CustomerID'];
-        $delivery->RiderID = $_POST['RiderID'];
-        $delivery->RequestID = $_POST['RequestID'];
-        $delivery->Delivery_Type = $_POST['Delivery_Type'];
-        $delivery->Delivery_Status = $_POST['Delivery_Status'];
-        $delivery->Delivery_Time = $_POST['Delivery_Time'];
-        $delivery->adddelivery();
-
-        
+        $del = new DeliveryModel();
+        $del->CustomerID = $_POST['CustomerID'];
+        $del->RiderID = $_POST['RiderID'];
+        $del->RequestID = $_POST['RequestID'];
+        $del->Delivery_Type = $_POST['Delivery_Type'];
+        $del->Delivery_Status = $_POST['Delivery_Status'];
+        $del->Delivery_Time = $_POST['Delivery_Time'];
+        $del->Request_Status = $_POST['Request_Status'];
+        return $del->adddelivery();    
 
     }
 
