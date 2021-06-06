@@ -10,7 +10,7 @@ class RepairServiceModel{
     }
 
     function view(){
-        $sql = "select * from request where Request_Status like '%In Progress%' OR Request_Status like '%Approved%' OR Request_Status like '%Pending%'  OR Request_Status like '%Cannot Be Repaired%' OR Request_Status like '%Done%'";
+        $sql = "select * from request where Request_Status like '%In Progress%' OR Request_Status like '%Approved%' OR Request_Status like '%Pending%'  OR Request_Status like '%Cannot Be Repaired%' OR Request_Status like '%Done%' OR Request_Status like '%Processing%' ";
         return RepairServiceModel::connect()->query($sql);;
     }
 
@@ -40,8 +40,8 @@ class RepairServiceModel{
 
     function updateStatus()
     {
-        $sql = "update request set Request_Status=:Request_Status, StaffID=:StaffID, Reason=:Reason, Delivery_Status=:Delivery_Status where RequestID=:RequestID";
-        $args = [':RequestID'=>$this->RequestID,':Request_Status'=>$this->Request_Status,':StaffID'=>$this->StaffID,':Reason'=>$this->Reason,':Delivery_Status'=>$this->Delivery_Status];
+        $sql = "update request set Request_Status=:Request_Status, StaffID=:StaffID, Reason=:Reason where RequestID=:RequestID";
+        $args = [':RequestID'=>$this->RequestID,':Request_Status'=>$this->Request_Status,':StaffID'=>$this->StaffID,':Reason'=>$this->Reason];
         $stmt = RepairServiceModel::connect()->prepare($sql);
         $stmt->execute($args);
         return $stmt;
@@ -49,8 +49,8 @@ class RepairServiceModel{
 
     function updateRequestStatus()
     {
-        $sql = "update request set Request_Status=:Request_Status, Estimate_Cost=:Estimate_Cost, Reason=:Reason, Delivery_Status=:Delivery_Status where RequestID=:RequestID";
-        $args = [':RequestID'=>$this->RequestID,':Request_Status'=>$this->Request_Status,':Estimate_Cost'=>$this->Estimate_Cost,':Reason'=>$this->Reason,':Delivery_Status'=>$this->Delivery_Status];
+        $sql = "update request set Request_Status=:Request_Status, Estimate_Cost=:Estimate_Cost, Reason=:Reason where RequestID=:RequestID";
+        $args = [':RequestID'=>$this->RequestID,':Request_Status'=>$this->Request_Status,':Estimate_Cost'=>$this->Estimate_Cost,':Reason'=>$this->Reason];
         $stmt = RepairServiceModel::connect()->prepare($sql);
         $stmt->execute($args);
         return $stmt;
@@ -62,7 +62,7 @@ class RepairServiceModel{
     }
 
     function viewInProgressTask(){
-        $sql = "select * from request where Request_Status like '%In Progress%' OR Request_Status like '%Approved%'";
+        $sql = "select * from request where Request_Status like '%In Progress%' OR Request_Status like '%Approved%' OR Request_Status like '%Processing%' ";
         return RepairServiceModel::connect()->query($sql);;
     }
 
