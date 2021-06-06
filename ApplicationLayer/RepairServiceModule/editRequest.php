@@ -11,11 +11,6 @@ $data2 = $request->getName($CustomerID);
 
 if(isset($_POST['done'])){
 
-  if ($_POST['Request_Status'] == "Done") {
-    $Delivery_Status="Ready for delivery";
-  }
-  else
-    $Delivery_Status="Accepted";
      
     $request->updateRequest();
 }

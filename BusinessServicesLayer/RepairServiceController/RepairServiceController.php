@@ -34,7 +34,7 @@ class RepairServiceController{
         $request = new RepairServiceModel();
         $request->RequestID = $_POST['RequestID'];
         $request->Request_Status = $_POST['Request_Status'];
-        $request->Delivery_Status = $_POST['Delivery_Status'];
+        
         $request->Reason = $_POST['Reason'];
         $request->StaffID = $_POST['StaffID'];
         if($request->updateStatus()){
@@ -47,14 +47,7 @@ class RepairServiceController{
         $request = new RepairServiceModel();
         $request->RequestID = $_POST['RequestID'];
         $request->Request_Status = $_POST['Request_Status'];
-        $status="Done";
-        $status2="Cannot Be Repaired";
-        if ($_POST['Request_Status']==$status || $_POST['Request_Status'] == $status2) {
-            $request->Delivery_Status = "Ready for delivery";
-        }
-        else
-            $request->Delivery_Status = "Accepted";
-        //$request->Delivery_Status = $Delivery_Status;
+        
         $request->Reason = $_POST['Reason'];
         $request->Estimate_Cost = $_POST['Estimate_Cost'];
        

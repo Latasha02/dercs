@@ -13,7 +13,8 @@ if(isset($_POST['approve'])){
      $StaffID= $_POST['StaffID'];
      $Reason=$_POST['Reason'];
      $Request_Status=$_POST['Request_Status'];
-     $Delivery_Status=$_POST['Delivery_Status'];
+     
+
     $request->editStatus();
 }
  
@@ -200,7 +201,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
             <td align="center"><input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
               <input type="hidden" name="Request_Status" value="Approved">
               <input type="hidden" name="Reason" value="Waiting for device.">
-              <input type="hidden" name="Delivery_Status" value="Accepted">
+              
               
             <input type="submit" name="approve" value="APPROVE" style="background-color: #80ff80"></td>
             
