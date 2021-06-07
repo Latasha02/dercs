@@ -1,10 +1,9 @@
 <?php
  require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/DeliveryController/DeliveryController.php';
 
-$CustomerID = $_GET['CustomerID'];
 $del = new DeliveryController();
 
-$data = $del->viewall($CustomerID);
+$data = $del->viewall();
 
 
 ?>
@@ -115,10 +114,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
             <thead>
                 <th>No</th>
                 <th>Request ID</th>
-                <th>Device Type</th>
+                <th>Customer Name</th>
                 <th>Delivery Type</th>
                 <th>Delivery Status </th>
-                <th>Date and Time</th>
             </thead>
 
             <?php
@@ -128,10 +126,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                 echo "<tr>" 
                 . "<td>".$i."</td>"
                 . "<td>".$row['RequestID']."</td&nbsp;>"
-                . "<td>".$row['Device_Type']."</td&nbsp;>"
+                . "<td>".$row['Cust_Name']."</td&nbsp;>"
                 ."<td>".$row['Delivery_Type']."</td&nbsp;>"
                   . "<td>".$row['Delivery_Status']."</td&nbsp;>"
-                  . "<td>".$row['Delivery_Time']."</td&nbsp;>"
                   ;
 
 

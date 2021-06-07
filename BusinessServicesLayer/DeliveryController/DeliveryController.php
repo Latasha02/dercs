@@ -8,6 +8,16 @@ class DeliveryController{
         return $del->view();
     }
 
+    function viewall(){
+        $del = new DeliveryModel();
+        return $del->viewall();
+    }
+    function custviewall($CustomerID){
+        $del = new DeliveryModel();
+        $del->CustomerID = $_POST['CustomerID'];
+        return $del->custviewall();
+    }
+
     function viewdel(){
         $del = new DeliveryModel();
         return $del->viewdel();
@@ -18,9 +28,19 @@ class DeliveryController{
         return $del->viewprocessing();
     }  
 
+    function viewprocessingdel(){
+        $del = new DeliveryModel();
+        return $del->viewprocessingdel();
+    } 
+
     function viewotwpickup(){
         $del = new DeliveryModel();
         return $del->viewotwpickup();
+    }
+
+    function viewotwpickupdel(){
+        $del = new DeliveryModel();
+        return $del->viewotwpickupdel();
     }
 
     function adddelivery()
@@ -33,17 +53,8 @@ class DeliveryController{
         $del->Delivery_Status = $_POST['Delivery_Status'];
         $del->Delivery_Time = $_POST['Delivery_Time'];
         $del->Request_Status = $_POST['Request_Status'];
+        $del->Reason = $_POST['Reason'];
         return $del->adddelivery(); 
-    }
-
-    function acceptdelivery()
-    {
-        $del = new DeliveryModel();
-        $del->RequestID = $_POST['RequestID'];
-        $del->Delivery_Status = $_POST['Delivery_Status'];
-        $del->Delivery_Type = $_POST['Delivery_Type'];
-        $del->Request_Status = $_POST['Request_Status'];
-        return $del->acceptdelivery(); 
     }
 
     function pickedup()

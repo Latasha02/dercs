@@ -14,6 +14,19 @@ class DeliveryModel{
         return DeliveryModel::connect()->query($sql);
     }
 
+    function viewall(){
+        $sql = "SELECT * FROM customers JOIN delivery ON customers.CustomerID=delivery.CustomerID JOIN request ON request.RequestID=delivery.RequestID";
+        return DeliveryModel::connect()->query($sql);
+    }
+
+    function custviewall(){
+        $sql = "SELECT * FROM customers JOIN delivery ON customers.CustomerID=delivery.CustomerID JOIN request ON request.RequestID=delivery.RequestID";
+        $args = [':CustomerID'=>$this->CustomerID];
+        $stmt = DeliveryModel::connect()->prepare($sql);
+        $stmt->execute($args);
+
+    }
+
     function viewdel(){
         $sql = "SELECT * FROM request INNER JOIN customers ON request.CustomerID = customers.CustomerID WHERE request.Request_Status='done' OR request.Request_Status='cannot be repaired'";
         return DeliveryModel::connect()->query($sql);
@@ -25,8 +38,19 @@ class DeliveryModel{
         
     }
 
+    function viewprocessingdel(){
+          $sql =  "SELECT * FROM delivery INNER JOIN customers ON delivery.CustomerID = customers.CustomerID WHERE delivery.Delivery_Status='on the way to pick up' AND delivery.Delivery_Type='delivery' ";
+        return DeliveryModel::connect()->query($sql);
+        
+    }
+
     function viewotwpickup(){
            $sql = "SELECT * FROM delivery INNER JOIN customers ON delivery.CustomerID = customers.CustomerID WHERE delivery.Delivery_Status LIKE '%Picked Up%' ";
+        return DeliveryModel::connect()->query($sql);  
+    }
+
+    function viewotwpickupdel(){
+           $sql = "SELECT * FROM delivery INNER JOIN customers ON delivery.CustomerID = customers.CustomerID WHERE delivery.Delivery_Status='picked up' AND delivery.Delivery_Type='delivery' ";
         return DeliveryModel::connect()->query($sql);
         
     }
@@ -39,29 +63,12 @@ class DeliveryModel{
         $stmt = DeliveryModel::connect()->prepare($sql);
         $stmt->execute($args);
 
-        $sql1 = "update request set Request_Status=:Request_Status WHERE RequestID=:RequestID";
-        $args1 = [':Request_Status'=>$this->Request_Status, ':RequestID'=>$this->RequestID];
+        $sql1 = "update request set Request_Status=:Request_Status, Reason=:Reason WHERE RequestID=:RequestID";
+        $args1 = [':Request_Status'=>$this->Request_Status,':Reason'=>$this->Reason, ':RequestID'=>$this->RequestID];
         $stmt1 = DeliveryModel::connect()->prepare($sql1);
         $stmt1->execute($args1);
-
-        
     }
 
-    function acceptdelivery()
-    {
-        
-        $sql = "UPDATE request set Request_Status=:Request_Status WHERE RequestID=:RequestID";
-        $args = [':Request_Status'=>$this->Request_Status, ':RequestID'=>$this->RequestID];
-        $stmt = DeliveryModel::connect()->prepare($sql);
-        $stmt->execute($args);
-
-        $sql1 = "UPDATE delivery SET delivery.Delivery_Status=:delivery.Delivery_Status, delivery.Delivery_Type=:delivery.Delivery_Type FROM delivery INNER JOIN request WHERE delivery.RequestID=:request.RequestID";
-        $args1 = [':Delivery_Status'=>$this->Delivery_Status, ':Delivery_Type'=>$this->Delivery_Type, ':RequestID'=>$this->RequestID];
-        $stmt1 = DeliveryModel::connect()->prepare($sql1);
-        $stmt1->execute($args1);
-
-        
-    }
 
 
     function pickedup()

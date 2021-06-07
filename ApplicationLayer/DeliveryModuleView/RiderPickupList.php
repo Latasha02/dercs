@@ -156,6 +156,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                     <input type="hidden" name="Delivery_Status" value="On the way to pick up">
                     <input type="hidden" name="Delivery_Time" value="<?php echo date('Y-m-d H:i:s'); ?>">
                     <input type="hidden" name="Request_Status" value="Processing">
+                    <input type="hidden" name="Reason" value="Process to pick up your device">
                     <input type="submit" name="pickup" value="Accept" class="btn btn-outline-primary h5 btn-lg"/>
                 </form>
               </td>
