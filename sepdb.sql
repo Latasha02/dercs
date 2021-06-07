@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2021 at 09:47 AM
+-- Generation Time: Jun 07, 2021 at 10:42 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -41,7 +41,9 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`CustomerID`, `Cust_Password`, `Cust_Name`, `Cust_Phone`, `Cust_Address`) VALUES
 (1, 'halo', 'Latasha', 189744128, 'Setapak Air Panas'),
-(2, 'halo', 'Nigel', 189744125, 'Danau Kota KL');
+(2, 'halo', 'Nigel', 189744125, 'Danau Kota KL'),
+(3, 'halo', 'hi Hi', 189744128, 'Hi my adress '),
+(4, 'adsj', 'uhuh', 142527, 'w5tej');
 
 -- --------------------------------------------------------
 
@@ -58,6 +60,15 @@ CREATE TABLE `delivery` (
   `Delivery_Status` varchar(50) NOT NULL,
   `Delivery_Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `delivery`
+--
+
+INSERT INTO `delivery` (`DeliveryID`, `CustomerID`, `RiderID`, `RequestID`, `Delivery_Type`, `Delivery_Status`, `Delivery_Time`) VALUES
+(5, 1, 1, 4, 'Delivery', 'Delivered', '2021-06-07 16:21:01'),
+(6, 4, 1, 1, 'Delivery', 'On the way to pick up', '2021-06-07 12:46:05'),
+(7, 2, 1, 3, 'Pick Up', 'On the way to pick up', '2021-06-07 12:47:30');
 
 -- --------------------------------------------------------
 
@@ -107,17 +118,18 @@ CREATE TABLE `request` (
   `Message` varchar(100) NOT NULL,
   `Request_Status` varchar(50) NOT NULL,
   `Reason` varchar(100) NOT NULL,
-  `Estimate_Cost` float NOT NULL,
-  `Delivery_Status` varchar(20) NOT NULL
+  `Estimate_Cost` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`RequestID`, `CustomerID`, `StaffID`, `Request_Time`, `Device_Type`, `Device_Model`, `Defect_Type`, `Message`, `Request_Status`, `Reason`, `Estimate_Cost`, `Delivery_Status`) VALUES
-(1, 1, 52, '2021-06-06 07:41:05', 'phone', 'P40 pro', 'idk', 'Its not working well', 'Processing', 'Your Request is Approved.', 100, 'Accepted'),
-(2, 2, 1, '2021-06-06 07:46:42', 'phone', 'P40 pro', 'idk really', 'HUHHUHUHUUH', 'Processing', 'HUHUHUHUBBHBH', 1000, 'Requested');
+INSERT INTO `request` (`RequestID`, `CustomerID`, `StaffID`, `Request_Time`, `Device_Type`, `Device_Model`, `Defect_Type`, `Message`, `Request_Status`, `Reason`, `Estimate_Cost`) VALUES
+(1, 4, 52, '2021-06-07 18:46:14', 'phone', 'P40 pro', 'idk', 'Its not working well', 'Processing Delivery', 'Process to deliver back your device', 100),
+(2, 3, 1, '2021-06-07 18:45:47', 'phone', 'P40 pro', 'idk really', 'HUHHUHUHUUH', 'Approved', 'HUHUHUHUBBHBH', 1000),
+(3, 2, 1, '2021-06-07 18:47:43', 'phone', 'P40 pro', 'idk', ';l\'k;ml', 'Processing', 'Process to pick up your device', 10000),
+(4, 1, 1, '2021-06-07 16:19:09', 'phone', 'P40 proolikjmhn', 'idk', 'u9lih,j', 'Processing Delivery', 'yilv', 1000);
 
 -- --------------------------------------------------------
 
@@ -214,13 +226,13 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `delivery`
 --
 ALTER TABLE `delivery`
-  MODIFY `DeliveryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `DeliveryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `invoice`
@@ -238,7 +250,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `RequestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `RequestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `rider`
