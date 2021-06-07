@@ -3,13 +3,13 @@
 
 $del = new DeliveryController();
 
-$data = $del->viewdel();
+$data = $del->view();
 $data1 = $del->viewprocessing();
 $data2 = $del->viewotwpickup();
 
 if 
 (isset($_POST['pickup'])) {
-    $del->acceptdelivery();}
+    $del->adddelivery();}
 else 
   if 
 (isset($_POST['pickedup'])) {
@@ -123,7 +123,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
   <div class="w3-row w3-padding-64">
     <div class="w3-full w3-container">
-        <h1 align="center">Job List to deliver</h1>
+        <h1 align="center">Job List to pick up</h1>
         <table id="sData" width="100%" width="100%" class="table table-stripped table-bordered" align="center">
           <h2>Accept Job</h2>
             <thead>
@@ -149,9 +149,12 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
             
             ?>
             <td><form method="POST"> 
+                    <input type="hidden" name="CustomerID" value="<?=$row['CustomerID']?>">
+                    <input type="hidden" name="RiderID" value=1>
                     <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
-                    <input type="hidden" name="Delivery_Type" value="Delivery">
+                    <input type="hidden" name="Delivery_Type" value="Pick Up">
                     <input type="hidden" name="Delivery_Status" value="On the way to pick up">
+                    <input type="hidden" name="Delivery_Time" value="<?php echo date('Y-m-d H:i:s'); ?>">
                     <input type="hidden" name="Request_Status" value="Processing">
                     <input type="submit" name="pickup" value="Accept" class="btn btn-outline-primary h5 btn-lg"/>
                 </form>

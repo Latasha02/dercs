@@ -8,6 +8,11 @@ class DeliveryController{
         return $del->view();
     }
 
+    function viewdel(){
+        $del = new DeliveryModel();
+        return $del->viewdel();
+    }
+
     function viewprocessing(){
         $del = new DeliveryModel();
         return $del->viewprocessing();
@@ -31,16 +36,21 @@ class DeliveryController{
         return $del->adddelivery(); 
     }
 
+    function acceptdelivery()
+    {
+        $del = new DeliveryModel();
+        $del->RequestID = $_POST['RequestID'];
+        $del->Delivery_Status = $_POST['Delivery_Status'];
+        $del->Delivery_Type = $_POST['Delivery_Type'];
+        $del->Request_Status = $_POST['Request_Status'];
+        return $del->acceptdelivery(); 
+    }
+
     function pickedup()
     {
         $del = new DeliveryModel();
         $del->DeliveryID = $_POST['DeliveryID'];
-        $del->CustomerID = $_POST['CustomerID'];
-        $del->RiderID = $_POST['RiderID'];
-        $del->RequestID = $_POST['RequestID'];
-        $del->Delivery_Type = $_POST['Delivery_Type'];
         $del->Delivery_Status = $_POST['Delivery_Status'];
-        $del->Delivery_Time = $_POST['Delivery_Time'];
         return $del->pickedup(); 
     }
 
@@ -48,12 +58,7 @@ class DeliveryController{
     {
         $del = new DeliveryModel();
         $del->DeliveryID = $_POST['DeliveryID'];
-        $del->CustomerID = $_POST['CustomerID'];
-        $del->RiderID = $_POST['RiderID'];
-        $del->RequestID = $_POST['RequestID'];
-        $del->Delivery_Type = $_POST['Delivery_Type'];
         $del->Delivery_Status = $_POST['Delivery_Status'];
-        $del->Delivery_Time = $_POST['Delivery_Time'];
         return $del->delivered(); 
     }
 
