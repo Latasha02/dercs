@@ -193,7 +193,7 @@ function w3_close() {
 </body>
 </html>
 <script>  
- $(document).ready(function(){  
+ $(document).ready(function(){  //data table
       $('#sData').DataTable({
       "lengthMenu": [[5, 10, 20, -1], [5, 10, 15, "All"]]
 

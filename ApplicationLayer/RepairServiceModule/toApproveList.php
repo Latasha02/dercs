@@ -139,7 +139,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
             <td align="center"><form action="" method="POST">
                     <input type="hidden" name="RequestID" value="<?=$row['RequestID']?>">
                     <input type="hidden" name="custID" value="<?=$row['CustomerID']?>">
-                    <input type="button"  onclick="location.href='approve.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="VIEW" name="view">
+                    <input type="button"  onclick="location.href='approveRequest.php?RequestID=<?=$row['RequestID']?>&custID=<?=$row['CustomerID']?>'" value="VIEW" name="view">
                     
                     &nbsp;&nbsp;&nbsp;
                    

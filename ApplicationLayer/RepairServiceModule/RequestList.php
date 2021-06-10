@@ -115,7 +115,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
   <div class="w3-row w3-padding-64">
     <div class="w3-full w3-container">
-        <h2 align="center">All Customer List</h2>
+        <h2 align="center">All Customer List</h2><br>
+        <h4 align="center"><input type="button" name="viewApproveList" align="center" onclick="location.href='toApproveList.php'" value="To Approve List"></h4>
         <table id="sData" width="100%" width="100%" class="table table-stripped table-bordered" align="center">
             <thead>
                 <th>No</th>
