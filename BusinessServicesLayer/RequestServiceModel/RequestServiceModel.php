@@ -14,6 +14,7 @@ class RequestServiceModel{
     }*/
     
     //this model function is to add the new request to database
+    function addRequest(){
         $sql = "insert into request(Request_Time, Device_Type, Device_Model, Defect_Type, Message, Request_Status, Reason, Estimate_Cost, Delivery_Status ) values (:ReqTime, :dtype, :brand, :symptom, :messages, :reqstat, :reason, :cost, :deliveryStatus)";
 
         $args = [':ReqTime'=>$this->ReqTime, ':dtype'=>$this->dtype, ':brand'=>$this->brand, ':symptom'=>$this->symptom, ':messages'=>$this->messages, ':reqstat'=>$this->reqstat, ':reason'=>$this->reason, ':deliveryStatus'=>$this->deliveryStatus, ':cost'=>$this->cost];
