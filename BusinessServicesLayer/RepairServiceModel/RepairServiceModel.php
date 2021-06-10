@@ -10,7 +10,7 @@ class RepairServiceModel{
     }
 
     function viewAll(){ //to view all request list
-        $sql = "select * from request ";
+        $sql = "select * from request where Request_Status like '%In Progress%' OR Request_Status like '%Approved%' OR Request_Status like '%Pending%'  OR Request_Status like '%Cannot Be Repaired%' OR Request_Status like '%Done%' OR Request_Status like '%Processing%' ";
         return RepairServiceModel::connect()->query($sql);;
     }
 
