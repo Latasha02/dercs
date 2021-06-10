@@ -2,13 +2,13 @@
 require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RepairServiceModel/RepairServiceModel.php';
 class RepairServiceController{
     
-   
-    function view(){
+   // controller
+    function viewAllRequest(){//controller for 
         $request = new RepairServiceModel();
-        return $request->view();
+        return $request->viewAll();
     }
 
-    function delete(){
+    function delete(){// to delete request from database
         $data = new RepairServiceModel();
         $data->RequestID = $_POST['RequestID'];
         if($data->deleteRequest()){
@@ -18,19 +18,19 @@ class RepairServiceController{
         }
     }
 
-    function viewRequest($RequestID){
+    function viewRequest($RequestID){//display all request 
         $request = new RepairServiceModel();
         $request->RequestID = $RequestID;
         return $request->viewRequest();
     }
 
-    function getName($CustomerID){
+    function getName($CustomerID){//get customer details
         $request = new RepairServiceModel();
         $request->CustomerID = $CustomerID;
         return $request->getCustName();
     }
 
-    function editStatus(){
+    function editStatus(){//edit status when staff approve request
         $request = new RepairServiceModel();
         $request->RequestID = $_POST['RequestID'];
         $request->Request_Status = $_POST['Request_Status'];
@@ -43,7 +43,7 @@ class RepairServiceController{
         }
     }
 
-    function updateRequest(){
+    function updateRequest(){//update status when staff update status, cost and , reason in view request details page
         $request = new RepairServiceModel();
         $request->RequestID = $_POST['RequestID'];
         $request->Request_Status = $_POST['Request_Status'];
@@ -60,27 +60,27 @@ class RepairServiceController{
         }
     }
 
-    function getToApproveTask(){
+    function getToApproveTask(){//to display to approve request list
         $item = new RepairServiceModel();
         return $item->viewToApproveTask();
     }
 
-    function getInProgressTask(){
+    function getInProgressTask(){//to display in progress request list
         $item = new RepairServiceModel();
         return $item->viewInProgressTask();
     }
 
-    function getPendingTask(){
+    function getPendingTask(){//to display pending request list
         $item = new RepairServiceModel();
         return $item->viewPendingTask();
     }
 
-    function getCannotRepairTask(){
+    function getCannotRepairTask(){//to display cannot repair request list
         $item = new RepairServiceModel();
         return $item->viewCannotRepairTask();
     }
 
-    function getDoneTask(){
+    function getDoneTask(){ //to display to complete request list
         $item = new RepairServiceModel();
         return $item->viewDoneTask();
     }

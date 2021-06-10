@@ -1,8 +1,10 @@
 <?php
  require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RepairServiceController/RepairServiceController.php';
 
+//view all request list page
+
 $repairService = new RepairServiceController();
-$data = $repairService->view();
+$data = $repairService->viewAllRequest();//
 
 if(isset($_POST['delete'])){
     $repairService->delete();

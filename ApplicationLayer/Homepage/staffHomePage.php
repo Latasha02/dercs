@@ -2,7 +2,7 @@
  require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RepairServiceController/RepairServiceController.php';
 
 $repairService = new RepairServiceController();
-$data = $repairService->view();
+$data = $repairService->viewAllRequest();
 
 if(isset($_POST['approve'])){
     $data=$repairService->getToApproveTask();

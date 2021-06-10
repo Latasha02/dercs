@@ -1,6 +1,7 @@
 <?php
  require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RepairServiceController/RepairServiceController.php';
 
+//view request details page
 
 $RequestID = $_GET['RequestID'];
 $CustomerID = $_GET['custID'];

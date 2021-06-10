@@ -1,6 +1,8 @@
 <?php
  require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RepairServiceController/RepairServiceController.php';
 
+//edit request page
+ //to update status. reason and estimate cost
 
 $RequestID = $_GET['RequestID'];
 $CustomerID = $_GET['custID'];
