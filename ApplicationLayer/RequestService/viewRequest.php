@@ -1,7 +1,7 @@
 <?php
 
 //page to view the request status details
- require_once $_SERVER["DOCUMENT_ROOT"].'/Dercs/BusinessServicesLayer/RequestServiceController/RequestServiceController.php';
+ require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RequestServiceController/RequestServiceController.php';
 
  $RequestID = $_GET['RequestID'];
 

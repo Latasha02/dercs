@@ -1,26 +1,6 @@
-<?php
-
- require_once '../../BusinessServicesLayer/PaymentController/PaymentController.php';
-
-$invoiceAtas = new PaymentController();
-$data1 = $invoiceAtas->viewInvoice1();
-
-$invoiceBwh = new PaymentController();
-$data2 = $invoiceBwh->viewInvoice2();
-
-  
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
 <html lang="en">
 <head>
-		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-
-		<link rel='stylesheet' type='text/css' href='css/style.css' />
-		<link rel='stylesheet' type='text/css' href='css/print.css' media="print" />
-		<script type='text/javascript' src='js/jquery-1.3.2.min.js'></script>
-		<script type='text/javascript' src='js/example.js'></script>
-
          <meta name="viewport" content="width=device-width, initial-scale=1">
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -82,15 +62,25 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 }
 </style>
 <body>
+  <br><br><br>
+<header class="w3-container w3-center w3-padding-32"> 
+  <h1><b>Welcome to the DERCS Computer Repair Shop</b></h1>
+  <br><br>
+
+  <p style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;Your connection to your computer doesn’t end when you leave work.<br> Far from it. Your computer keeps you connected to the world around you. It gives you the freedom to work away from the office.<br> It keeps you laughing as you watch videos on YouTube, keeps you in touch with faraway friends and relatives as you scroll through photos on Facebook.<br> And it keeps your kids up to date with their homework.
+  So what do you do when your company’s computer systems crash? <br>Or when you see the slowdown or other signs of a virus, spyware, or other malware?<br>
+  You call <span class="w3-tag">DERCS!</span> That’s what you do.<br> We have the technical experience and know-how to get you back up and running pronto.<br> We come to you – yes, even at 3 am if necessary. If you need IT support in here, Even if all you need is help connecting your new printer, we’re there for you. <br>So, you may start by click <span class="w3-tag">customer request</span> <p>
+
+</header>
 
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
     
-    <a href="#" class="w3-bar-item w3-button w3-theme-l1"><img src="../../images/logo.jpg" width="25" height="25"> DERCS Computer Repair Shop</a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1"><img src="../../Images/logo.jpg" width="25" height="25"> DERCS Computer Repair Shop</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" ></a>
-    <a href="/GitHub/dercs/ApplicationLayer/Homepage/custHomePage.php" class="w3-bar-item w3-button w3-theme-l1">Home</a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1">Home</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1">About Us</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" >Our Service</a>
 
@@ -110,7 +100,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   <a class="w3-bar-item w3-button w3-hover-black" href="#">Customer Request</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">Tracking</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">My Profile</a>
-   <a class="w3-bar-item w3-button w3-hover-black" href="Invoice.php">Invoice</a>
   
 </nav>
 
@@ -124,112 +113,17 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <div class="w3-twothird w3-container">
 
 <!--Start write the code here-->
-<div id="page-wrap">
-
-		<textarea style="width: 800px;
-  height: 50px;" id="header">INVOICE</textarea>
-		
-		<div id="identity">
-		
-       <textarea id="address">DERCS
-		Universiti Malaysia 
-		Pahang, 26600 Pekan, 
-		Pahang
-
-		Phone: (555) 555-5555</textarea>
 
 
-		
-		</div>
-		
-		<div style="clear:both"></div>
-		
-		<div id="customer">
 
-            <textarea id="customer-title">Computer Repair Shop</textarea>
-
-            <table id="meta">
-            	<?php
-            	foreach($data1 as $row1){
-            	?> 
-                <tr>
-                    <td class="meta-head">Invoice #</td>
-                    <td><textarea></textarea></td>
-                </tr>
-                <tr>
-
-                    <td class="meta-head">Request Time & Date</td>
-                    <td><textarea id="date"><?=$row1['Request_Time']?></textarea></td>
-                </tr>
-                <tr>
-                    <td class="meta-head">Cost(RM)</td>
-                    <td><div class="due"><?=$row1['Estimate_Cost']?>.00</div></td>
-                </tr>
-                <?php } ?>
-            </table>
-		
-		</div>
-		<table id="items">
-		
-		  <tr>
-		      <th>Device Type</th>
-		      <th>Device Model</th>
-		      <th>Defect Type</th>
-		      <th>Reason</th>
-		      <th>Price</th>
-		  </tr>
-		  
-		 <?php
-            	foreach($data2 as $row2){
-            	$totalprice =0;
-                $deliveryfee=5;
-            	$totalprice = $deliveryfee + $row2["Estimate_Cost"];
-            	?> 
-		  
-		  <tr class="item-row">
-		      <td class="item-name"><textarea><?=$row2['Device_Type']?></textarea></td>
-
-		      <td class="description"><textarea><?=$row2['Device_Model']?></textarea></td>
-		       <td class="description"><textarea><?=$row2['Defect_Type']?></textarea></td>
-		      <td><textarea class="cost"><?=$row2['Reason']?></textarea></td>
-		      
-		      <td><span class="price"><?=$row2['Estimate_Cost']?></span></td>
-		  </tr>
-		  
-		  
-		  
-		  <tr>
-		      <td colspan="2" class="blank"> </td>
-		      <td colspan="2" class="total-line">Fee Pick Up</td>
-		      <td class="total-value"><div id="subtotal">5.00</div></td>
-		  </tr>
-		  <tr>
-
-		      <td colspan="2" class="blank"> </td>
-		      <td colspan="2" class="total-line">Total</td>
-		      <td> <input type="text" name="subtotal" value="<?=number_format($totalprice,2); ?>" id="subtotal" style="width: 5em;"  class="noborder" readonly></td>
-
-		      
-		  </tr>
-		  
-		 <?php } ?>
-		</table>
-		
-		<div id="terms">
-		  <h5>Terms</h5>
-		  <textarea>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
-		</div>
-	
-	</div>
 
 
 
 
 <!-- end -->
 
-         <div class="footer">
-      <p>DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
-
+        <div class="footer">
+      <p align="center">DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
 
       
     </div>

@@ -1,6 +1,6 @@
 <?php
 //interface to display the requested repair service list and delete or cancel request
-require_once $_SERVER["DOCUMENT_ROOT"].'/Dercs/BusinessServicesLayer/RequestServiceController/RequestServiceController.php';
+require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RequestServiceController/RequestServiceController.php';
 
 $CustomerID = $_GET['CustomerID'];
 //$RequestID = $_GET['RequestID'];
@@ -141,13 +141,19 @@ td{
 <table border='1'>
     <th>Request ID</th>
     <th>Request Status</th>
+    <th>Delivery Type</th>
+    <th>Delivery Status</th>
     <th>Action</th>
     <th>Status Details</th>
+    
 <?php
   foreach($data as $row){
     echo "<tr>" 
     . "<td>".$row['RequestID']."</td>"
-    . "<td>".$row['Request_Status']."</td>";
+    . "<td>".$row['Request_Status']."</td>"
+    . "<td>".$row['Delivery_Status']."</td>"
+    . "<td>".$row['Delivery_Type']."</td>";
+
 ?> 
 <td><form method="POST" action="">
     <button type="button" onclick="location.href='editRequest.php?RequestID=<?=$row['RequestID']?>&CustomerID=<?=$row['CustomerID']?>'" value="Edit"><i class="fa fa-edit"></i><input type="hidden" name="CustomerID" value="<?=$row['CustomerID']?>"><input type="hidden" name="RequestID" value="<?=$row['RequestID']?>"></button>&nbsp;&nbsp;<button class="btn" name="delete" ><i class="fa fa-trash"></i></button></form></td>

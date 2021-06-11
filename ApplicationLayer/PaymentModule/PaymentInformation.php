@@ -137,7 +137,7 @@ body {
     
     <a href="#" class="w3-bar-item w3-button w3-theme-l1"><img src="../../images/logo.jpg" width="25" height="25"> DERCS Computer Repair Shop</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" ></a>
-    <a href="#" class="w3-bar-item w3-button w3-theme-l1">Home</a>
+    <a href="/GitHub/dercs/ApplicationLayer/Homepage/custHomePage.php" class="w3-bar-item w3-button w3-theme-l1">Home</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1">About Us</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" >Our Service</a>
 
@@ -208,7 +208,7 @@ body {
       
 <!-- button utk delivery -->
  
-      <a href="#home"><button class="w3-button w3-red" type="submit"  onclick="myFunction()">Delivery Payment</button></a>
+      <a href="/GitHub/dercs/ApplicationLayer/Homepage/custHomePage.php"><button class="w3-button w3-red" type="submit"  onclick="myFunction()">Delivery Payment</button></a>
       </p>  
 
 <!-- alert messages for delivery --> 

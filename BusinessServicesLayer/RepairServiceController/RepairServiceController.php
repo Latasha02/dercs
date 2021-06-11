@@ -38,7 +38,8 @@ class RepairServiceController{
         $request->Reason = $_POST['Reason'];
         $request->StaffID = $_POST['StaffID'];
         if($request->updateStatus()){
-        echo "<script type='text/javascript'>;
+        $message = "Successfully Approved This Request" ;
+        echo "<script type='text/javascript'>alert('$message');
         window.location = '../../ApplicationLayer/RepairServiceModule/RequestList.php';</script>";
         }
     }
