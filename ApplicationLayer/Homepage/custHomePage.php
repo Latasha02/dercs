@@ -1,16 +1,3 @@
-<?php
-
- require_once '../../BusinessServicesLayer/PaymentController/PaymentController.php';
-
- $Information = new PaymentController();
-    if(isset($_POST['addinfo'])){
-        $Information->addinfo();
-    }
-    
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,69 +60,25 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   bottom: 0;
   height: inherit;
 }
-/* box css fill in information */
-@import "bourbon";
-
-body {
-  background: #eee !important;  
-}
-
-.wrapper {  
-  margin-top: 80px;
-  margin-bottom: 80px;
-}
-
-.form-signin {
-  max-width: 780px;
-  padding: 15px 35px 45px;
-  margin: 0 auto;
-  background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.1);  
-
-  .form-signin-heading,
-  .checkbox {
-    margin-bottom: 30px;
-  }
-
-  .checkbox {
-    font-weight: normal;
-  }
-
-  .form-control {
-    position: relative;
-    font-size: 16px;
-    height: auto;
-    padding: 10px;
-    @include box-sizing(border-box);
-
-    &:focus {
-      z-index: 2;
-    }
-  }
-
-  input[type="text"] {
-    margin-bottom: -1px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  input[type="password"] {
-    margin-bottom: 20px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-}
-
-
 </style>
 <body>
+  <br><br><br>
+<header class="w3-container w3-center w3-padding-32"> 
+  <h1><b>Welcome to the DERCS Computer Repair Shop</b></h1>
+  <br><br>
+
+  <p style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;Your connection to your computer doesn’t end when you leave work.<br> Far from it. Your computer keeps you connected to the world around you. It gives you the freedom to work away from the office.<br> It keeps you laughing as you watch videos on YouTube, keeps you in touch with faraway friends and relatives as you scroll through photos on Facebook.<br> And it keeps your kids up to date with their homework.
+  So what do you do when your company’s computer systems crash? <br>Or when you see the slowdown or other signs of a virus, spyware, or other malware?<br>
+  You call <span class="w3-tag">DERCS!</span> That’s what you do.<br> We have the technical experience and know-how to get you back up and running pronto.<br> We come to you – yes, even at 3 am if necessary. If you need IT support in here, Even if all you need is help connecting your new printer, we’re there for you. <br>So, you may start by click <span class="w3-tag">customer request</span> <p>
+
+</header>
 
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
     
-    <a href="#" class="w3-bar-item w3-button w3-theme-l1"><img src="../../images/logo.jpg" width="25" height="25"> DERCS Computer Repair Shop</a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1"><img src="../../Images/logo.jpg" width="25" height="25"> DERCS Computer Repair Shop</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" ></a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1">Home</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1">About Us</a>
@@ -157,7 +100,6 @@ body {
   <a class="w3-bar-item w3-button w3-hover-black" href="#">Customer Request</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">Tracking</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">My Profile</a>
-   <a class="w3-bar-item w3-button w3-hover-black" href="Invoice.php">Invoice</a>
   
 </nav>
 
@@ -169,72 +111,19 @@ body {
 
   <div class="w3-row w3-padding-64">
     <div class="w3-twothird w3-container">
-       <h1 class="w3-text-teal">Fill in your information</h1>
 
 <!--Start write the code here-->
 
-<!--boxes fill in information-->
-<form action=""  method="POST">
-<div class="wrapper">
-    <form class="form-signin">       
-      <input type="text" class="form-control" name="Cust_Name" placeholder="Full name" required="" autofocus="" />
-      <input type="text" class="form-control" name="Cust_PhoneNo" placeholder="phone number" required=""/>      
-      
-      <input type="text" class="form-control" name="Cust_Address" placeholder="Address" required="" autofocus="" />
-      <br>
-        <p>Please select your payment type:</p>
 
-        <input type="radio" id="PayOnline" name="PaymentType" value="PayOnline">
-        <label for="PayOnline">Online</label><br>
 
-        <input type="radio" id="PayOnDelivery" name="PaymentType" value="PayOnDelivery">
-        <label for="PayOnDelivery">Delivery</label>
 
-        <br><br><br>
-        <!-- button utk prevous page-->  
-        <button class="w3-button w3-green" type="submit" name="addinfo">Submit</button>
-  <!-- button utk prevous page-->    
-      <button class="w3-button w3-red" type="submit">Back</button>  
 
-    </form>
-  </div>
-  </form>
-  <p style="color: red; text-align: right;">**Note</p>
-  <p style="color: red;text-align: right;">**PLEASE CLICK ON SUBMIT BUTTON FIRST BEFORE CLICK ONE OF THE BUTTON BELOW**</p>
-  <!-- button utk online -->
-   <p align="right">   
-   <input class="w3-button w3-green" type="button" name="Online Payment" align="center" onclick="location.href='Paypal.php'" value="Online Payment">
-    
-      
-<!-- button utk delivery -->
- 
-      <a href="/GitHub/dercs/ApplicationLayer/Homepage/custHomePage.php"><button class="w3-button w3-red" type="submit"  onclick="myFunction()">Delivery Payment</button></a>
-      </p>  
 
-<!-- alert messages for delivery --> 
-  
- <script>
-function myFunction() {
-  alert("Your item will be deliver soon!");
-}
-</script>
-<!-- alert messages for online Payment --> 
-
-<script>
-function myOnlineP() {
-  let myOnlineP = confirm("Are you sure to proceed with the payment online?");
-        if (myOnlineP) {
-          alert("you will be redirect to the payment");
-        } else {
-          alert("canceled");
-        }
-}
-</script>
 
 <!-- end -->
 
         <div class="footer">
-      <p>DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
+      <p align="center">DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
 
       
     </div>
