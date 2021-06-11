@@ -17,7 +17,7 @@ class RequestServiceController{
         $request->reqstat = 'Apply';
         $request->reason = 'Pending';
         $request->cost = 0;
-        $request->deliveryStatus = 'Apply';
+        //$request->deliveryStatus = 'Apply';
     
 
         //$request->target_dir = "../RequestService/";
