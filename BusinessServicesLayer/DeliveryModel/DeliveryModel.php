@@ -20,10 +20,11 @@ class DeliveryModel{
     }
 
     function custviewall(){
-        $sql = "SELECT * FROM customers JOIN delivery ON customers.CustomerID=delivery.CustomerID JOIN request ON request.RequestID=delivery.RequestID";
+        $sql = "SELECT * FROM customers JOIN delivery ON customers.CustomerID=delivery.CustomerID JOIN request ON request.RequestID=delivery.RequestID WHERE customers.CustomerID= delivery.CustomerID";
         $args = [':CustomerID'=>$this->CustomerID];
         $stmt = DeliveryModel::connect()->prepare($sql);
         $stmt->execute($args);
+        return $stmt;
 
     }
 

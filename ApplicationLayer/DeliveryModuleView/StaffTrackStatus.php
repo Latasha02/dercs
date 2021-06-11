@@ -115,6 +115,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                 <th>No</th>
                 <th>Request ID</th>
                 <th>Customer Name</th>
+                <th>Device Type</th>
                 <th>Delivery Type</th>
                 <th>Delivery Status </th>
             </thead>
@@ -127,6 +128,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                 . "<td>".$i."</td>"
                 . "<td>".$row['RequestID']."</td&nbsp;>"
                 . "<td>".$row['Cust_Name']."</td&nbsp;>"
+                . "<td>".$row['Device_Type']."</td&nbsp;>"
                 ."<td>".$row['Delivery_Type']."</td&nbsp;>"
                   . "<td>".$row['Delivery_Status']."</td&nbsp;>"
                   ;

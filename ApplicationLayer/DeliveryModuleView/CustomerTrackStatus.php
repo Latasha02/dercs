@@ -4,7 +4,7 @@
 $CustomerID = $_GET['CustomerID'];
 $del = new DeliveryController();
 
-$data = $del->viewall($CustomerID);
+$data = $del->custviewall($CustomerID);
 
 
 ?>
