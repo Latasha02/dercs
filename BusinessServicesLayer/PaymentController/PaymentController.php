@@ -15,7 +15,7 @@
         if($Information->addInformation()){
             $message = "Success Insert!";
             echo "<script type='text/javascript'>alert('$message');
-            window.location = '../../ApplicationLayer/managePayment/PaymentInformation.php';</script>";
+            window.location = '../../ApplicationLayer/PaymentModule/PaymentInformation.php';</script>";
         }
     }
 //to display data 
