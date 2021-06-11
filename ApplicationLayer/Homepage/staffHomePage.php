@@ -82,8 +82,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <a href="#" class="w3-bar-item w3-button w3-theme-l1"><img src="../../Images/logo.jpg" width="25" height="25"> DERCS Computer Repair Shop</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" ></a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1">Home</a>
-    <a href="#" class="w3-bar-item w3-button w3-theme-l1">About Us</a>
-    <a href="#" class="w3-bar-item w3-button w3-theme-l1" >Our Service</a>
+    <a href="aboutUs.php" class="w3-bar-item w3-button w3-theme-l1">About Us</a>
+    <a href="ourService.php" class="w3-bar-item w3-button w3-theme-l1" >Our Service</a>
 
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" align="left">Sign In</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" align="left">Sign Up</a>
