@@ -203,12 +203,12 @@ body {
   <p style="color: red;text-align: right;">**PLEASE CLICK ON SUBMIT BUTTON FIRST BEFORE CLICK ONE OF THE BUTTON BELOW**</p>
   <!-- button utk online -->
    <p align="right">   
-   <a href="Paypal.php"><button class="w3-button w3-green" type="submit"  onclick="myOnlineP()" >Online Payment</button></a>
+   <input class="w3-button w3-green" type="button" name="Delivery Payment" align="center" onclick="location.href='Paypal.php'" value="Delivery Payment">
     
       
 <!-- button utk delivery -->
  
-      <a href="Paypal.php"><button class="w3-button w3-red" type="submit"  onclick="myFunction()">Delivery Payment</button></a>
+      <a href="#home"><button class="w3-button w3-red" type="submit"  onclick="myFunction()">Delivery Payment</button></a>
       </p>  
 
 <!-- alert messages for delivery --> 
