@@ -35,10 +35,12 @@ class RequestServiceModel{
 
     //this model function is to display the requested repair service status list from database
     function viewmyRequest(){
-        $sql = "select * from request where CustomerID=:CustomerID";
-        $args = [':CustomerID'=>$this->CustomerID];
-        return DB::run($sql, $args);
+        //$sql = "SELECT * FROM request JOIN delivery ON request.CustomerID=delivery.CustomerID WHERE CustomerID=:CustomerID";
+        $sql = "SELECT * FROM customers JOIN delivery ON customers.CustomerID=delivery.CustomerID JOIN request ON request.RequestID=delivery.RequestID";
+        return RequestServiceModel::connect()->query($sql);
     }
+        //$args = [':CustomerID'=>$this->CustomerID];
+      
 
 //this model function is to display the requested repair service status detail from database
      function viewRequest(){

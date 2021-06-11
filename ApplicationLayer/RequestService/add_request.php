@@ -1,7 +1,7 @@
 <?php
 
 //interface to add new request
- require_once $_SERVER["DOCUMENT_ROOT"].'/Dercs/BusinessServicesLayer/RequestServiceController/RequestServiceController.php';
+ require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RequestServiceController/RequestServiceController.php';
 
  
  $request = new RequestServiceController();
