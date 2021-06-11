@@ -1,12 +1,3 @@
-<?php
- require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/DeliveryController/DeliveryController.php';
-
-$del = new DeliveryController();
-
-$data = $del->viewall();
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +18,15 @@ $data = $del->viewall();
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+ .footer {
+   
+   left: 0;
+   bottom: 0;
+   width: 100%;
+
+   color: black;
+   text-align: center;
+}
 .p {
             color: dodgerblue;
             font-size:20px;}
@@ -60,31 +60,32 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   bottom: 0;
   height: inherit;
 }
-.footer {
-  
-   left: 0;
-   bottom: 0;
-   width: 100%;
-
-   color: black;
-   text-align: center;
-}
 </style>
 <body>
+  <br><br><br>
+<header class="w3-container w3-center w3-padding-32"> 
+  <h1><b>Welcome to the DERCS Computer Repair Shop</b></h1>
+  <br><br>
+
+  <p style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;Your connection to your computer doesn’t end when you leave work.<br> Far from it. Your computer keeps you connected to the world around you. It gives you the freedom to work away from the office.<br> It keeps you laughing as you watch videos on YouTube, keeps you in touch with faraway friends and relatives as you scroll through photos on Facebook.<br> And it keeps your kids up to date with their homework.
+  So what do you do when your company’s computer systems crash? <br>Or when you see the slowdown or other signs of a virus, spyware, or other malware?<br>
+  You call <span class="w3-tag">DERCS!</span> That’s what you do.<br> We have the technical experience and know-how to get you back up and running pronto.<br> We come to you – yes, even at 3 am if necessary. If you need IT support in here, Even if all you need is help connecting your new printer, we’re there for you. <br>So, you may start by click <span class="w3-tag">customer request</span> <p>
+
+</header>
 
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-theme-l1"><img src="../../images/logo.jpg" width="25" height="25"> DERCS Computer Repair Shop</a>
+    
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1"><img src="../../Images/logo.jpg" width="25" height="25"> DERCS Computer Repair Shop</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" ></a>
-    <a href="../../ApplicationLayer/Homepage/staffHomepage.php" class="w3-bar-item w3-button w3-theme-l1">Home</a>
-    <a href="../../ApplicationLayer/Homepage/aboutUs.php" class="w3-bar-item w3-button w3-theme-l1">About Us</a>
-    <a href="../../ApplicationLayer/Homepage/ourService.php" class="w3-bar-item w3-button w3-theme-l1" >Our Service</a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1">Home</a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1">About Us</a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1" >Our Service</a>
 
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" align="left">Sign In</a>
     <a href="#" class="w3-bar-item w3-button w3-theme-l1" align="left">Sign Up</a>
-    
    
     
   </div>
@@ -96,7 +97,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <i class="fa fa-remove"></i>
   </a>
   <h4 class="w3-bar-item"><b>Menu</b></h4>
-  <a class="w3-bar-item w3-button w3-hover-black" href="../../ApplicationLayer/RepairServiceModule/RequestList.php">All Customer Request</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#">Customer Request</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">Tracking</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">My Profile</a>
   
@@ -106,49 +107,25 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
-<div class="w3-main" style="margin-left:250px"; width="100%">
+<div class="w3-main" style="margin-left:250px">
 
   <div class="w3-row w3-padding-64">
-    <div class="w3-full w3-container">
-        <h1 align="center">Track Status</h1>
-        <table id="sData" width="100%" width="100%" class="table table-stripped table-bordered" align="center">
-            <thead>
-                <th>No</th>
-                <th>Request ID</th>
-                <th>Customer Name</th>
-                <th>Device Type</th>
-                <th>Delivery Type</th>
-                <th>Delivery Status </th>
-            </thead>
+    <div class="w3-twothird w3-container">
 
-            <?php
-            $i = 1;
-            foreach($data as $row){
-
-                echo "<tr>" 
-                . "<td>".$i."</td>"
-                . "<td>".$row['RequestID']."</td&nbsp;>"
-                . "<td>".$row['Cust_Name']."</td&nbsp;>"
-                . "<td>".$row['Device_Type']."</td&nbsp;>"
-                ."<td>".$row['Delivery_Type']."</td&nbsp;>"
-                  . "<td>".$row['Delivery_Status']."</td&nbsp;>"
-                  ;
+<!--Start write the code here-->
 
 
-            
-            ?>
-                <?php
-                $i++;
-                echo "</tr>";
-        }
-        ?>
-  
-        </table>
 
 
-      <div class="footer">
+
+
+
+<!-- end -->
+
+        <div class="footer">
       <p align="center">DERCS Computer Repair Shop Sdn.Bhd &#169; All Rights Reserved</p></div>
-</div >
+
+      
     </div>
     
   </div>
@@ -184,29 +161,3 @@ function w3_close() {
 
 </body>
 </html>
-<script>  
- $(document).ready(function(){  
-      $('#sData').DataTable({
-      "lengthMenu": [[5, 10, 20, -1], [5, 10, 15, "All"]]
-
-      });
- });
-
-$(document).ready(function(){  
-      $('#lData').DataTable({
-      "lengthMenu": [[5, 10, 20, -1], [5, 10, 15, "All"]]
-
-      });
- });
-
-$(document).ready(function(){  
-      $('#kData').DataTable({
-      "lengthMenu": [[5, 10, 20, -1], [5, 10, 15, "All"]]
-
-      });
- });
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
-
- </script>  
