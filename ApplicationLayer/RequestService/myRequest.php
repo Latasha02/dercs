@@ -121,7 +121,7 @@ td{
   </a>
   <h4 class="w3-bar-item"><b>Menu</b></h4>
   <a class="w3-bar-item w3-button w3-hover-black" href="myRequest.php">My Request</a>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#">Tracking</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="location.href='../../ApplicationLayer/DeliveryModuleView/CustomerTrackStatus.php?custID=<?=$row['CustomerID']?>'">Tracking</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">My Profile</a>
   
 </nav>
