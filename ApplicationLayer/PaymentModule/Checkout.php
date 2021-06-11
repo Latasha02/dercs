@@ -152,7 +152,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
         </table>
         <br><br><br>
         <!-- button utk checkout to next page-->  
-        <a href="PaymentInformation.php"><button class="w3-button w3-green" type="submit" >Checkout</button></a>
+        <!--<button class="w3-button w3-green" type="submit" onclick="location.href='PaymentInformation.php'">Checkout</button>-->
+
+        <input class="w3-button w3-green" type="button" name="Checkout" align="center" onclick="location.href='PaymentInformation.php'" value="Check Out">
   
     </form>
   </div>
