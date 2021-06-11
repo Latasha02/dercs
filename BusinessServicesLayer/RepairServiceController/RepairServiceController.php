@@ -3,7 +3,7 @@ require_once $_SERVER["DOCUMENT_ROOT"].'/dercs/BusinessServicesLayer/RepairServi
 class RepairServiceController{
     
    // controller
-    function viewAllRequest(){//controller for 
+    function viewAllRequest(){//to display all request list except request that habe not accept
         $request = new RepairServiceModel();
         return $request->viewAll();
     }
@@ -18,7 +18,7 @@ class RepairServiceController{
         }
     }
 
-    function viewRequest($RequestID){//display all request 
+    function viewRequest($RequestID){//display request details 
         $request = new RepairServiceModel();
         $request->RequestID = $RequestID;
         return $request->viewRequest();
